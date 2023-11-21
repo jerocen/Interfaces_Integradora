@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogInView">
+
+    <TextView
+        android:id="@+id/titleLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:textSize="60dp"
+        android:textColor="#0CFF00"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintVertical_bias="0.2"
+        />
+
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="#919191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleLogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.18"
+        android:hint="Ingrese su nombre"
+        />
+
+    <EditText
+        android:id="@+id/editTextContrasenia"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="#919191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextContrasenia"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.56"
+        android:hint="Ingrese su contraseña"
+        />
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="134dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextContrasenia"
+        app:layout_constraintVertical_bias="0.12"
+        android:text="Entrar"
+        android:backgroundTint="#0CFF00"
+        android:textSize="25dp"
+        />
+
+     <TextView
+         android:id="@+id/todavia"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="¿Todavía no tienes cuenta?"
+         android:textColor="#08A900"
+         android:textSize="18dp"
+         android:textAlignment="center"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintTop_toBottomOf="@id/btnlogin"
+         app:layout_constraintVertical_bias="0.25"
+         />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
