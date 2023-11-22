@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,18 +16,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new CountDownTimer(4000, 1000) {
-            public void onTick(long millisUntilFinished)
-            {
+        LottieAnimationView animacion= findViewById(R.id.animation_view);
+        Intent i = new Intent(this, LogInView.class);
+
+        CountDownTimer s = new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long l) {
 
             }
 
-            public void onFinish()
-            {
-                Intent intent = new Intent(MainActivity.this, LogInView.class);
-                startActivity(intent);
+            @Override
+            public void onFinish() {
+                animacion.setVisibility(View.GONE);
+                startActivity(i);
                 finish();
             }
-        }.start();
+        };
+        s.start();
     }
 }
