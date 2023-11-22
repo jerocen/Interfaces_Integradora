@@ -10,5 +10,6 @@ public class CodigoVerificacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_codigo_verificacion);
+
     }
 }

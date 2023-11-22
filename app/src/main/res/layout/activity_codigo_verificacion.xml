@@ -4,6 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CodigoVerificacion">
+    tools:context=".CodigoVerificacion"
+    android:background="@color/fondo"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/imgyap"
+        android:id="@+id/titleCodigoVerificacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/contador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reenviar codigo en: 00:00"
+        android:textSize="25sp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/verdeClaro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleCodigoVerificacion" />
+
+    <EditText
+        android:id="@+id/editTextCodigoVerificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirmar Contraseña"
+        android:layout_marginHorizontal="20dp"
+        android:minHeight="48dp"
+        android:padding="15dp"
+        android:background="@color/white"
+        android:textColorHint="#919191"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contador"
+        android:layout_margin="20dp"/>
+
+    <Button
+        android:id="@+id/btnRegistro"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextCodigoVerificacion"
+        android:layout_marginTop="35dp"
+        android:text="Verificar"
+        android:textColor="@color/white"
+        android:background="@drawable/btnlogin"
+        android:textSize="25dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
