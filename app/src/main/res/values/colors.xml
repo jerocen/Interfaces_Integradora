@@ -2,4 +2,44 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gris">#FF808080</color>
+    <color name="grisOscuro">#FF404040</color>
+    <color name="grisClaro">#FFC0C0C0</color>
+    <color name="azul">#FF0000FF</color>
+    <color name="azulClaro">#FF00FFFF</color>
+    <color name="azulOscuro">#FF0000A0</color>
+    <color name="rojo">#FFFF0000</color>
+    <color name="rojoClaro">#FFFF00FF</color>
+    <color name="rojoOscuro">#FF800000</color>
+    <color name="verde">#FF00FF00</color>
+    <color name="verdeClaro">#FF00FF00</color>
+    <color name="verdeOscuro">#FF008000</color>
+    <color name="amarillo">#FFFFFF00</color>
+    <color name="amarilloClaro">#FFFFFF00</color>
+    <color name="amarilloOscuro">#FF808000</color>
+    <color name="naranja">#FFFFA500</color>
+    <color name="naranjaClaro">#FFFFA500</color>
+    <color name="naranjaOscuro">#FFFF8000</color>
+    <color name="morado">#FF800080</color>
+    <color name="moradoClaro">#FF800080</color>
+    <color name="moradoOscuro">#FF800080</color>
+    <color name="rosa">#FFFFC0CB</color>
+    <color name="rosaClaro">#FFFFC0CB</color>
+    <color name="rosaOscuro">#FFFFC0CB</color>
+    <color name="cafe">#FFA52A2A</color>
+    <color name="cafeClaro">#FFA52A2A</color>
+    <color name="cafeOscuro">#FFA52A2A</color>
+    <color name="grisTransparente">#80000000</color>
+    <color name="grisTransparenteClaro">#80000000</color>
+    <color name="grisTransparenteOscuro">#80000000</color>
+    <color name="azulTransparente">#800000FF</color>
+    <color name="azulTransparenteClaro">#800000FF</color>
+    <color name="azulTransparenteOscuro">#800000FF</color>
+    <color name="rojoTransparente">#80FF0000</color>
+    <color name="rojoTransparenteClaro">#80FF0000</color>
+    <color name="rojoTransparenteOscuro">#80FF0000</color>
+    <color name="verdeTransparente">#8000FF00</color>
+    <color name="verdeTransparenteClaro">#8000FF00</color>
+    <color name="fondo">#80EDEDED</color>
+
 </resources>
