@@ -18,7 +18,6 @@ public class LogInView extends AppCompatActivity
         setContentView(R.layout.activity_log_in_view);
 
         TextView textView = findViewById(R.id.todavia);
-
     }
 
 }
