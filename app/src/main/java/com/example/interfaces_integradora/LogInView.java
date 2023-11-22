@@ -19,16 +19,6 @@ public class LogInView extends AppCompatActivity
 
         TextView textView = findViewById(R.id.todavia);
 
-        TextView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-
-                Intent intent = new Intent(LogInView.this, SignUpView.class);
-                startActivity(intent);
-            }
-        });
     }
 
 }
