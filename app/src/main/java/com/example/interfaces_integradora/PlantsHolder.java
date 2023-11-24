@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PlantsHolder extends RecyclerView.ViewHolder
 {
     ImageView imageview;
-    TextView nombre, usuario;
+    TextView nombre;
 
-    public PlantsHolder(@NonNull View itemView) {
+    public PlantsHolder(@NonNull View itemView)
+    {
         super(itemView);
         imageview = itemView.findViewById(R.id.imagePlantView);
         nombre = itemView.findViewById(R.id.plantName);
-        usuario = itemView.findViewById(R.id.userName);
     }
 }

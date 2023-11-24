@@ -31,7 +31,6 @@ public class PlantsAdaptador extends RecyclerView.Adapter<PlantsHolder>
     public void onBindViewHolder(@NonNull PlantsHolder holder, int position)
     {
         holder.nombre.setText(items.get(position).getNombre());
-        holder.usuario.setText(items.get(position).getUsuario());
         holder.imageview.setImageResource(items.get(position).getImage());
     }
 

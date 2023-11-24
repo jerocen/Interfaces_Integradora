@@ -24,15 +24,6 @@
         android:textSize="20dp"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/userName"
-        android:layout_toEndOf="@id/imagePlantView"
-        android:textColor="@color/black"
-        android:layout_below="@id/plantName"
-        android:hint="Name"
-        />
     
     <LinearLayout
         android:layout_width="match_parent"
