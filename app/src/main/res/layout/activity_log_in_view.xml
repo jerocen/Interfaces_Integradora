@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LogInView">
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    tools:context=".LogInView"
+    android:background="@color/fondo">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="300dp"
         android:src="@drawable/imglogin"
         android:id="@+id/titleLogin"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,12 +26,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/titleLogin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/fondo"
+
         >
 
         <TextView
@@ -109,18 +116,6 @@
             android:textSize="25dp"
             />
 
-        <TextView
-            android:id="@+id/todavia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="35dp"
-            android:text="¿Todavía no tienes cuenta?"
-            android:textColor="@color/gris"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnlogin"
-            tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/registrate"
@@ -130,10 +125,12 @@
             android:layout_marginTop="35dp"
             android:text="Registrate"
             android:textColor="@color/verde"
-            android:textSize="15dp"
+            android:textSize="25dp"
             android:textStyle="bold"
+            android:background="@drawable/btnregister"
+            android:gravity="center_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/todavia"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnlogin"
             tools:ignore="TextSizeCheck" />
 
@@ -142,5 +139,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
