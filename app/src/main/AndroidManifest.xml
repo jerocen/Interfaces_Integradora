@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Interfaces_Integradora"
         tools:targetApi="31">
         <activity
+            android:name=".Background_flur"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileInfo"
+            android:exported="false" />
+        <activity
             android:name=".About"
             android:exported="false" />
         <activity
@@ -42,6 +48,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.example.interfaces_integradora.Background_flur"
+            android:theme="@style/AppTheme.BackgroundBlur">
+            <!-- Otros atributos de la actividad -->
+        </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"
