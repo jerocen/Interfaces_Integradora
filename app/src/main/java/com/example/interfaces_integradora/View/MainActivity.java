@@ -1,4 +1,4 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.CountDownTimer;
 import android.view.View;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.interfaces_integradora.R;
+import com.example.interfaces_integradora.View.LogInView;
 
 public class MainActivity extends AppCompatActivity {
 

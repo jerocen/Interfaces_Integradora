@@ -16,31 +16,31 @@
             android:name=".Background_flur"
             android:exported="false" />
         <activity
-            android:name=".EditProfileInfo"
+            android:name=".View.EditProfileInfo"
             android:exported="false" />
         <activity
-            android:name=".About"
+            android:name=".View.About"
             android:exported="false" />
         <activity
-            android:name=".Contact"
+            android:name=".View.Contact"
             android:exported="false" />
         <activity
-            android:name=".Perfil"
+            android:name=".View.Perfil"
             android:exported="false" />
         <activity
-            android:name=".MyPlants"
+            android:name=".View.MyPlants"
             android:exported="false" />
         <activity
-            android:name=".CodigoVerificacion"
+            android:name=".View.CodigoVerificacion"
             android:exported="false" />
         <activity
-            android:name=".SignUpView"
+            android:name=".View.SignUpView"
             android:exported="false" />
         <activity
-            android:name=".LogInView"
+            android:name=".View.LogInView"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

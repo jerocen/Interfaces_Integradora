@@ -1,15 +1,16 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CodigoVerificacion extends AppCompatActivity {
+import com.example.interfaces_integradora.R;
+
+public class Contact extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_codigo_verificacion);
-
+        setContentView(R.layout.activity_contact);
     }
 }

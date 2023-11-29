@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.interfaces_integradora.Models.ItemPlant;
+
 import java.util.List;
 
 public class PlantsAdaptador extends RecyclerView.Adapter<PlantsHolder>

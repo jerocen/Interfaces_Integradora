@@ -1,14 +1,16 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Contact extends AppCompatActivity {
+import com.example.interfaces_integradora.R;
+
+public class Perfil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact);
+        setContentView(R.layout.activity_perfil);
     }
 }

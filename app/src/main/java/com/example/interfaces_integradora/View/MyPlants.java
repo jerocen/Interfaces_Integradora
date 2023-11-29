@@ -1,4 +1,4 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
+import com.example.interfaces_integradora.Models.ItemPlant;
+import com.example.interfaces_integradora.PlantsAdaptador;
+import com.example.interfaces_integradora.R;
 import com.google.android.material.navigation.NavigationView;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +49,6 @@ public class MyPlants extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
-
-
-
-
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlants);

@@ -1,14 +1,16 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EditProfileInfo extends AppCompatActivity {
+import com.example.interfaces_integradora.R;
+
+public class About extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile_info);
+        setContentView(R.layout.activity_about);
     }
 }

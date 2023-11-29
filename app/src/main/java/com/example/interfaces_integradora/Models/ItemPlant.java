@@ -1,4 +1,4 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.Models;
 
 public class ItemPlant
 {
