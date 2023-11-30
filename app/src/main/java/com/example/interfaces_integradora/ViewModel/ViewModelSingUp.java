@@ -4,4 +4,5 @@ import androidx.lifecycle.ViewModel;
 
 public class ViewModelSingUp extends ViewModel {
 
+
 }
