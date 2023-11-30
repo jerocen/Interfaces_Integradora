@@ -9,4 +9,6 @@ public interface ApiRequest {
 @POST("/api/auth/register")
 Call<ResponsePostUserRegister> registerUser(@Body PostUserRegister postUserRegister);
 
+
+
 }
