@@ -4,16 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@layout/activity_background_flur"
+    android:background="@drawable/shapebackground"
     tools:context=".View.Perfil">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/header_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="127dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="124dp"
+            android:text="Tu Perfil"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="40dp" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="112dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -22,11 +45,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="124dp"
+        android:background="@color/white"
+        android:padding="10dp"
         android:text="Nombre"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -34,49 +59,55 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:background="@color/white"
+        android:padding="10dp"
         android:text="Email"
         android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.229" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="130dp"
         android:layout_height="60dp"
-        android:text="Cambiar contraseña"
         android:background="@drawable/btnlogin"
+        android:text="Cambiar contraseña"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.579"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.365" />
+        app:layout_constraintVertical_bias="0.592" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="130dp"
         android:layout_height="60dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="52dp"
         android:background="@drawable/btnlogin"
-        android:textColor="@color/white"
-        android:layout_marginEnd="64dp"
         android:text="Volver al menú"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView6"
+        android:padding="12dp"
+        android:textAlignment="center"
+        android:layout_width="270dp"
+        android:background="@color/fondo"
         android:layout_height="wrap_content"
-        android:text="Tu Perfil"
-        android:textColor="#00ff00"
-        tools:layout_editor_absoluteX="218dp"
-        android:textSize="44dp"
-        tools:layout_editor_absoluteY="61dp" />
+        android:layout_marginTop="24dp"
+        android:text="Aquí encuentra la información de tu cuenta al haber iniciado sesión."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
