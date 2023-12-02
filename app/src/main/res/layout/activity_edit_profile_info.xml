@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,63 +7,71 @@
     android:background="@drawable/shapebackground"
     tools:context=".View.EditProfileInfo">
 
-    <TextView
-        android:id="@+id/newPasswdTitle"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:textSize="40dp"
-        android:textAlignment="center"
-        android:text="Edita tu contraseña"
-        android:padding="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/newPasswd"
-        android:background="#e1e1e1"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:hint="Escribe tu nueva contraseña"
-        android:padding="26dp"
-        android:textColorHint="#919191"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newPasswdTitle" />
+        android:layout_gravity="center"
+        >
 
-    <EditText
-        android:id="@+id/confirmNewPasswd"
-        android:background="#e1e1e1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_marginTop="72dp"
-        android:textColorHint="#919191"
-        android:hint="Confirmar nueva contrsaseña"
-        android:padding="26dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newPasswd" />
+        <TextView
+            android:id="@+id/newPasswdTitle"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:textSize="40dp"
+            android:textAlignment="center"
+            android:text="Edita tu contraseña"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirmar cambio"
+        <EditText
+            android:id="@+id/newPasswd"
+            android:background="#e1e1e1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:hint="Escribe tu nueva contraseña"
+            android:padding="26dp"
+            android:textColorHint="#919191"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/newPasswdTitle" />
 
-        app:layout_constraintTop_toBottomOf="@id/confirmNewPasswd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="72dp"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:background="@drawable/btnlogin"
-        android:textSize="20dp"
-        />
+        <EditText
+            android:id="@+id/confirmNewPasswd"
+            android:background="#e1e1e1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="72dp"
+            android:textColorHint="#919191"
+            android:hint="Confirmar nueva contrsaseña"
+            android:padding="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/newPasswd" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirmar cambio"
+
+            app:layout_constraintTop_toBottomOf="@id/confirmNewPasswd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="72dp"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/btnlogin"
+            android:textSize="20dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
