@@ -7,8 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.interfaces_integradora.Models.AuthLogout;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
@@ -23,15 +29,21 @@ public class MyPlants extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
 
+    SharedPreferences sharedPreferences;
+    Button buttonprueba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_plants);
 
+        sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        buttonprueba = findViewById(R.id.buttonprueba);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -50,6 +62,13 @@ public class MyPlants extends AppCompatActivity {
             return true;
         });
 
+
+        buttonprueba.setOnClickListener(v -> {
+            String token = sharedPreferences.getString("token", "");
+            Log.d("MyPlants", "Token: " + token);
+            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+            AuthLogout.logoutUser(this, token);
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlants);
 

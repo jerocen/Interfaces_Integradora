@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,55 +8,64 @@
     android:background="@color/fondo"
     >
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:src="@drawable/imgyap"
-        android:id="@+id/titleCodigoVerificacion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="wrap_content ">
 
-    <TextView
-        android:id="@+id/contador"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reenviar codigo en: 00:00"
-        android:textSize="25sp"
-        android:layout_marginStart="20dp"
-        android:textColor="@color/verdeClaro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleCodigoVerificacion" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/imgyap"
+            android:id="@+id/titleCodigoVerificacion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <EditText
-        android:id="@+id/editTextCodigoVerificacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirmar Contraseña"
-        android:layout_marginHorizontal="20dp"
-        android:minHeight="48dp"
-        android:padding="15dp"
-        android:background="@color/white"
-        android:textColorHint="#919191"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contador"
-        android:layout_margin="20dp"/>
+        <TextView
+            android:id="@+id/Titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mandamos un link para verificar tu correo"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/verdeClaro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleCodigoVerificacion"/>
 
-    <Button
-        android:id="@+id/btnRegistro"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextCodigoVerificacion"
-        android:layout_marginTop="35dp"
-        android:text="Verificar"
-        android:textColor="@color/white"
-        android:background="@drawable/btnlogin"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/contador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reenviar correo en: 00:00"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/verdeClaro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Titulo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:visibility="invisible"
+            android:id="@+id/btnRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/btnlogin"
+            android:text="Reenviar"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contador"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="498dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

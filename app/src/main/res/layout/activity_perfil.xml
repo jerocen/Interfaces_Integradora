@@ -7,6 +7,7 @@
     android:background="@drawable/shapebackground"
     tools:context=".View.Perfil">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="170dp"
