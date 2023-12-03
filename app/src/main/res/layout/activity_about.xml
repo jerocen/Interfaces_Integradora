@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shapebackground"
     tools:context=".View.About">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="500dp">
+
+        <TextView
+            android:id="@+id/titleAbout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="¿Quienes somos?"
+            android:textSize="45dp"
+            android:textStyle="bold"
+            android:textColor="@color/verde"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="30dp"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="inherit"
+            android:textSize="20dp"
+            android:text="Nuestra marca tiene la visión y el objetivo de proporcionarle a nuestros usuarios una buena forma de cuidar sus cultivos y plantas, así como llevar a cabo un riguroso seguimiento del estado actual de las mismas. Y es con esta aplicación que se cumplen dichas funciones dependiendo de las plantas que el usuario tenga entre otros aspectos."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleAbout"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
