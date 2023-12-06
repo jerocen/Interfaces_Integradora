@@ -9,8 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_margin="20dp"
-        android:layout_height="500dp">
+        >
 
         <TextView
             android:id="@+id/titleAbout"
@@ -31,6 +32,9 @@
             android:layout_height="match_parent"
             android:textAlignment="inherit"
             android:textSize="20dp"
+            android:justification="inter_word"
+            android:background="#f3f3f3"
+            android:padding="10dp"
             android:text="Nuestra marca tiene la visión y el objetivo de proporcionarle a nuestros usuarios una buena forma de cuidar sus cultivos y plantas, así como llevar a cabo un riguroso seguimiento del estado actual de las mismas. Y es con esta aplicación que se cumplen dichas funciones dependiendo de las plantas que el usuario tenga entre otros aspectos."
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

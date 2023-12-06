@@ -34,6 +34,12 @@ public class PlantsAdaptador extends RecyclerView.Adapter<PlantsHolder>
     {
         holder.nombre.setText(items.get(position).getNombre());
         holder.imageview.setImageResource(items.get(position).getImage());
+
+        holder.itemView.setOnClickListener(v -> {
+            if (mListener != null) {
+                mListener.onItemClick(position);
+            }
+        });
     }
 
     @Override
@@ -41,4 +47,15 @@ public class PlantsAdaptador extends RecyclerView.Adapter<PlantsHolder>
     {
         return items.size();
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    private OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
 }

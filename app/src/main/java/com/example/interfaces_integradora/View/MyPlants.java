@@ -14,6 +14,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.interfaces_integradora.DetallePlanta;
 import com.example.interfaces_integradora.Models.AuthLogout;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.PlantsAdaptador;
@@ -85,5 +86,11 @@ public class MyPlants extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new PlantsAdaptador(getApplicationContext(),itemPlants));
+
+        PlantsAdaptador adapter = new PlantsAdaptador(getApplicationContext(), itemPlants);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+
     }
 }

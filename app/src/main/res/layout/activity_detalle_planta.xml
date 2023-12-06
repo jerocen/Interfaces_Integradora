@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shapebackground"
+    tools:context=".DetallePlanta">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de la planta"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imagePlantView"
+        app:layout_constraintHorizontal_bias="0.05"
+        android:textStyle="bold"
+        android:textColor="@color/verdeClaro"
+        android:textSize="25dp"
+        />
+
+    <!--Imagen de la planta-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imagePlantView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/grisClaro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.06"
+        android:layout_marginTop="25dp"
+        >
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Sensor de lluvia-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lluviaInfo"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
+        android:background="@drawable/borders_info_plant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imagePlantView"
+        >
+        <ImageView
+            android:id="@+id/lluvia"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:src="@drawable/rain_120356"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/lluviaValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unidad"
+            app:layout_constraintTop_toBottomOf="@id/lluvia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Movimiento-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/movimientoInfo"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
+        android:background="@drawable/borders_info_plant"
+        app:layout_constraintTop_toBottomOf="@id/imagePlantView"
+        app:layout_constraintStart_toEndOf="@id/lluviaInfo"
+        >
+
+        <ImageView
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/move_39551"/>
+
+        <TextView
+            android:id="@+id/movimientoValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Unidad"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Humedad del suelo-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/humedadSueloInfo"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
+        android:background="@drawable/borders_info_plant"
+        app:layout_constraintTop_toBottomOf="@id/imagePlantView"
+        app:layout_constraintStart_toEndOf="@id/movimientoInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/humedadSuelo"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:src="@drawable/moisture_soil_icon_216885"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/humedadSueloValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unidad"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/humedadSuelo"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Medición del agua-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/medicionAguaInfo"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
+        android:background="@drawable/borders_info_plant"
+        app:layout_constraintTop_toBottomOf="@id/lluviaInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/medicionAgua"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:src="@drawable/game_pipe_worker_labor_water_icon_133751"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unidad"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/medicionAgua"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Luz-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/luzInfo"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintTop_toBottomOf="@id/movimientoInfo"
+        app:layout_constraintStart_toEndOf="@id/medicionAguaInfo"
+        android:background="@drawable/borders_info_plant"
+        >
+
+        <ImageView
+            android:id="@+id/Luz"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:src="@drawable/sun_weather_solar_sunny_bright_summer_warm_icon_221549"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unidad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Luz"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Humedad del aire-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/humedadAireInfo"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:background="@drawable/borders_info_plant"
+        app:layout_constraintTop_toBottomOf="@id/humedadSueloInfo"
+        app:layout_constraintStart_toEndOf="@id/luzInfo"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintHorizontal_bias="0.1"
+        >
+
+        <ImageView
+            android:id="@+id/humedadAire"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/conditioning_humidity_smart_home_conditioner_air_icon_218657"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unidad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/humedadAire"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Temperatura del aire-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/temperaturaAireInfo"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:background="@drawable/borders_info_plant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/luzInfo"
+        >
+
+        <ImageView
+            android:id="@+id/temperaturaAire"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:src="@drawable/temperature_temperature_hot_forecast_weather_icon_133125"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:text="Unidad"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
