@@ -7,6 +7,7 @@
     android:background="@drawable/shapebackground"
     tools:context=".DetallePlanta">
 
+    <!--Nombre de la planta-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

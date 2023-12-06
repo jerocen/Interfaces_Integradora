@@ -14,7 +14,7 @@ public class DetallePlanta extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_planta);
-
+        /*
         Intent intent = getIntent();
         if (intent != null) {
             ItemPlant selectedPlant = (ItemPlant) intent.getSerializableExtra("PLANTA_SELECCIONADA");
@@ -29,5 +29,7 @@ public class DetallePlanta extends AppCompatActivity {
                 imageViewPlanta.setImageResource(selectedPlant.getImage());
             }
         }
+        */
+
     }
 }
