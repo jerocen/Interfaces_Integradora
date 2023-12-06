@@ -17,4 +17,7 @@ Call<ResponsePostUserLogin> loginUser(@Body PostUserLogin postUserLogin);
 @POST("/api/auth/logout")
 Call<ResponsePostUserLogout> logoutUser(@Header("Authorization") String token);
 
+@GET("/api/auth/me")
+Call<ResponsePostUserMe> meUser(@Header("Authorization") String token);
+
 }

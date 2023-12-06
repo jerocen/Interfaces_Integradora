@@ -12,17 +12,24 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.interfaces_integradora.DetallePlanta;
 import com.example.interfaces_integradora.Models.AuthLogout;
+import com.example.interfaces_integradora.Models.DatosUser;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyPlants extends AppCompatActivity {
 
@@ -39,6 +46,8 @@ public class MyPlants extends AppCompatActivity {
         setContentView(R.layout.activity_my_plants);
 
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
+
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -65,7 +74,6 @@ public class MyPlants extends AppCompatActivity {
 
 
         buttonprueba.setOnClickListener(v -> {
-            String token = sharedPreferences.getString("token", "");
             Log.d("MyPlants", "Token: " + token);
             Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
             AuthLogout.logoutUser(this, token);
