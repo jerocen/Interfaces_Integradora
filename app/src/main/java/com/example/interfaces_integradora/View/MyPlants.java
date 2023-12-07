@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,6 +25,8 @@ import com.example.interfaces_integradora.Models.AuthLogout;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -38,6 +43,8 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
 
     String token;
 
+    FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +57,17 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
         buttonprueba = findViewById(R.id.buttonprueba);
+        fab = findViewById(R.id.fab);
+
+        fab.setOnClickListener(view -> {
+           BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MyPlants.this, R.style.BottomSheetStyle);
+           View sheetView = LayoutInflater.from(getApplicationContext())
+                   .inflate(R.layout.bottom_dialog,
+                           (ViewGroup) findViewById(R.id.container));
+
+           bottomSheetDialog.setContentView(sheetView);
+              bottomSheetDialog.show();
+        });
 
         setSupportActionBar(toolbar);
 
@@ -82,8 +100,6 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         PlantsAdaptador adapter = new PlantsAdaptador(getApplicationContext(), itemPlants);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
-
     }
 
     @Override
