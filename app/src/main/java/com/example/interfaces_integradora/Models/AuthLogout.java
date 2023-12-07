@@ -19,7 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthLogout {
-    public static void logoutUser(Context context, String token) {
+    public static void logoutUser(Context context, String token, Runnable onSuccess) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://52.0.199.187")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -40,11 +40,8 @@ public class AuthLogout {
                     myEdit.putBoolean("sesion", false);
                     myEdit.apply();
 
-                    // Navegar a la siguiente actividad
-                    Intent intent = new Intent(context, LogInView.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    context.startActivity(intent);
-
+                    // Ejecutar el código de éxito
+                    onSuccess.run();
                 } else {
                     // Mostrar un mensaje de error
                     Log.e("AuthLogout", "Error response from server: " + response.code());

@@ -1,37 +1,33 @@
 package com.example.interfaces_integradora.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.interfaces_integradora.DetallePlanta;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.interfaces_integradora.Models.AuthLogout;
-import com.example.interfaces_integradora.Models.DatosUser;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
-import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class MyPlants extends AppCompatActivity {
+public class MyPlants extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -40,15 +36,15 @@ public class MyPlants extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Button buttonprueba;
 
+    String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_plants);
 
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
-
-
+        token = sharedPreferences.getString("token", "");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -56,28 +52,16 @@ public class MyPlants extends AppCompatActivity {
         buttonprueba = findViewById(R.id.buttonprueba);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
-        toolbar.setNavigationOnClickListener(v -> {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START);
-            } else {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(item -> {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        });
+        navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setCheckedItem(R.id.nav_my_plants);
 
-        buttonprueba.setOnClickListener(v -> {
-            Log.d("MyPlants", "Token: " + token);
-            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
-            AuthLogout.logoutUser(this, token);
-        });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlants);
 
@@ -101,4 +85,43 @@ public class MyPlants extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer((GravityCompat.START));
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.nav_my_plants) {
+            Intent intent = new Intent(this, MyPlants.class);
+            startActivity(intent);
+        } else if (itemId == R.id.nav_perfil) {
+            Intent intent = new Intent(this, Perfil.class);
+            startActivity(intent);
+        } else if (itemId == R.id.nav_contact) {
+            Intent intent = new Intent(this, Contact.class);
+            startActivity(intent);
+        } else if (itemId == R.id.nav_logout) {
+            Log.d("MyPlants", "Token: " + token);
+            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+            AuthLogout.logoutUser(this, token, () -> {
+                Intent intent = new Intent(this, LogInView.class);
+                startActivity(intent);
+                finish();
+            });
+        } else if (itemId == R.id.nav_about) {
+            Intent intent = new Intent(this, About.class);
+            startActivity(intent);
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 }

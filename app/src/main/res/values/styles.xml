@@ -3,6 +3,7 @@
     <style name="AppTheme.BackgroundBlur" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Otros atributos de estilo -->
         <item name="android:windowBackground">@layout/activity_background_flur</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
 </resources>
