@@ -5,8 +5,6 @@ public class ResponsePostUserLogin {
     private String token_type;
     private String expires_at;
 
-
-
     public String getAccess_token() {
         return access_token;
     }

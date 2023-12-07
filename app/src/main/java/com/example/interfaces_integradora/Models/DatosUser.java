@@ -28,16 +28,14 @@ public class DatosUser {
                     String username = response.body().getName();
                     textViewUsername.setText(username);
                 } else {
-                    // Manejar error
                 }
             }
 
             @Override
             public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
-                // Manejar error
             }
         });
         */
-         
+
     }
 }
