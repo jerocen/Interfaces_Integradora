@@ -41,5 +41,6 @@
     <color name="verdeTransparente">#8000FF00</color>
     <color name="verdeTransparenteClaro">#8000FF00</color>
     <color name="fondo">#80EDEDED</color>
+    <color name="verdechido">#22c892</color>
 
 </resources>

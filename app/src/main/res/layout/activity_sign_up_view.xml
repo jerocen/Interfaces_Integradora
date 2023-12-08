@@ -42,7 +42,7 @@
             android:layout_marginHorizontal="20dp"
             android:minHeight="48dp"
             android:padding="15dp"
-            android:background="@color/white"
+            android:background="@drawable/edittext_desing"
             android:textColorHint="#919191"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
             android:minHeight="48dp"
             android:padding="15dp"
             android:layout_margin="20dp"
-            android:background="@color/white"
+            android:background="@drawable/edittext_desing"
             android:textColorHint="#919191"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
             android:layout_marginHorizontal="20dp"
             android:minHeight="48dp"
             android:padding="15dp"
-            android:background="@color/white"
+            android:background="@drawable/edittext_desing"
             android:textColorHint="#919191"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
             android:layout_marginHorizontal="20dp"
             android:minHeight="48dp"
             android:padding="15dp"
-            android:background="@color/white"
+            android:background="@drawable/edittext_desing"
             android:textColorHint="#919191"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,37 +106,27 @@
             app:layout_constraintTop_toBottomOf="@id/editTextConfirmarContraseniaRegistro"
             android:layout_marginTop="35dp"
             android:text="Registrarse"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:background="@drawable/btnlogin"
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/todavia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="35dp"
-            android:text="¿Ya tienes cuenta?"
-            android:textColor="@color/gris"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnRegistro"
-            tools:ignore="TextSizeCheck" />
-
-        <TextView
             android:id="@+id/registrate"
             android:layout_width="0dp"
+            android:layout_marginBottom="20dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="35dp"
-            android:text="Inicia sesión ahora"
-            android:textColor="@color/verde"
-            android:textSize="15dp"
-            android:textStyle="bold"
+            android:layout_marginTop="80dp"
+            android:text="Ya tengo una cuenta"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="normal"
+            android:gravity="center_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/todavia"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnRegistro"
-            tools:ignore="TextSizeCheck" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -78,13 +78,13 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
                     nombrePerfil.setText(response.body().getName());
                     correo.setText(response.body().getEmail());
                 } else {
-                    // Maneja el caso en que la respuesta no sea exitosa
+                    Toast.makeText(MyPlants.this, "Error al obtener datos del usuario", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
-                // Maneja el caso en que la llamada falle
+                Toast.makeText(MyPlants.this, "Error de conexion", Toast.LENGTH_SHORT).show();
             }
         });
 
