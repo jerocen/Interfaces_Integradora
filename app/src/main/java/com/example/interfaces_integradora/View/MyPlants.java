@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,15 +23,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interfaces_integradora.Models.AuthLogout;
+import com.example.interfaces_integradora.Models.DatosUser;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyPlants extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,8 +63,31 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-        buttonprueba = findViewById(R.id.buttonprueba);
         fab = findViewById(R.id.fab);
+        View headerView = navigationView.getHeaderView(0);
+        TextView nombrePerfil = headerView.findViewById(R.id.nombreperfil);
+        TextView correo = headerView.findViewById(R.id.correo);
+
+        // Haz una llamada a la función obtenerDatosUser
+        Call<ResponsePostUserMe> call = DatosUser.obtenerDatosUser(token);
+        call.enqueue(new Callback<ResponsePostUserMe>() {
+            @Override
+            public void onResponse(Call<ResponsePostUserMe> call, Response<ResponsePostUserMe> response) {
+                if (response.isSuccessful()) {
+                    // Actualiza los TextViews con los datos del usuario
+                    nombrePerfil.setText(response.body().getName());
+                    correo.setText(response.body().getEmail());
+                } else {
+                    // Maneja el caso en que la respuesta no sea exitosa
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
+                // Maneja el caso en que la llamada falle
+            }
+        });
+
 
         fab.setOnClickListener(view -> {
            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MyPlants.this, R.style.BottomSheetStyle);
