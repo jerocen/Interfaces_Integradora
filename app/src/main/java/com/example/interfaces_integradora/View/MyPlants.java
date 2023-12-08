@@ -69,6 +69,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
               bottomSheetDialog.show();
         });
 
+        
         setSupportActionBar(toolbar);
 
         navigationView.bringToFront();
