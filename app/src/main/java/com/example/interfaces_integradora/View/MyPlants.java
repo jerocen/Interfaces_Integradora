@@ -130,7 +130,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         recyclerView.setAdapter(new PlantsAdaptador(getApplicationContext(),itemPlants));
 
         PlantsAdaptador adapter = new PlantsAdaptador(getApplicationContext(), itemPlants);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(adapter);
     }
 
