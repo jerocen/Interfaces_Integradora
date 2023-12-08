@@ -148,10 +148,10 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlants);
 
         List<ItemPlant> itemPlants = new ArrayList<ItemPlant>();
-        itemPlants.add(new ItemPlant("Lirios", R.drawable.imagen_planta1));
-        itemPlants.add(new ItemPlant("Tulipan", R.drawable.imagen_planta2));
-        itemPlants.add(new ItemPlant("Margarita", R.drawable.imagen_planta3));
-        itemPlants.add(new ItemPlant("Orquídeas", R.drawable.imagen_planta4));
+        itemPlants.add(new ItemPlant("Lirios", R.drawable.icon1));
+        itemPlants.add(new ItemPlant("Tulipan", R.drawable.icon2));
+        itemPlants.add(new ItemPlant("Margarita", R.drawable.icon3));
+        itemPlants.add(new ItemPlant("Orquídeas", R.drawable.icon4));
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(new PlantsAdaptador(getApplicationContext(),itemPlants));
