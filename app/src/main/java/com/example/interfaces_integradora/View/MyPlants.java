@@ -120,11 +120,6 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         itemPlants.add(new ItemPlant("Tulipan", R.drawable.imagen_planta2));
         itemPlants.add(new ItemPlant("Margarita", R.drawable.imagen_planta3));
         itemPlants.add(new ItemPlant("Orquídeas", R.drawable.imagen_planta4));
-        itemPlants.add(new ItemPlant("Rosa", R.drawable.imagen_planta5));
-        itemPlants.add(new ItemPlant("Girasol", R.drawable.imagen_planta6));
-        itemPlants.add(new ItemPlant("Peonías", R.drawable.imagen_planta7));
-        itemPlants.add(new ItemPlant("Narcisos", R.drawable.imagen_planta8));
-        itemPlants.add(new ItemPlant("Dalias", R.drawable.imagen_planta9));
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(new PlantsAdaptador(getApplicationContext(),itemPlants));
