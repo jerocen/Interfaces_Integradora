@@ -7,9 +7,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 public class PlantsHolder extends RecyclerView.ViewHolder
 {
-    ImageView imageview;
+    ShapeableImageView imageview;
     TextView nombre;
 
     public PlantsHolder(@NonNull View itemView)
