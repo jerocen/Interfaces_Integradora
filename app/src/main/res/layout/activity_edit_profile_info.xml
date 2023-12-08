@@ -8,16 +8,14 @@
     tools:context=".View.EditProfileInfo">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         >
-
         <TextView
             android:id="@+id/newPasswdTitle"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+
             android:textSize="40dp"
             android:textAlignment="center"
             android:text="Edita tu contraseña"
@@ -29,7 +27,7 @@
 
         <EditText
             android:id="@+id/newPasswd"
-            android:background="#e1e1e1"
+            android:background="@drawable/edittext_desing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
@@ -71,6 +69,7 @@
             android:background="@drawable/btnlogin"
             android:textSize="20dp"
             />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

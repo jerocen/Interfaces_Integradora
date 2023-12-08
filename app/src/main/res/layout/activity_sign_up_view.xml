@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
+
             android:layout_marginHorizontal="20dp"
             android:minHeight="48dp"
             android:padding="15dp"
@@ -64,37 +65,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextNombreRegistro" />
 
-        <EditText
-            android:id="@+id/editTextContraseniaRegistro"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutContraseniaRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
-            android:layout_marginHorizontal="20dp"
-            android:minHeight="48dp"
-            android:padding="15dp"
-            android:background="@drawable/edittext_desing"
+            android:layout_margin="20dp"
             android:textColorHint="#919191"
-            android:inputType="textPassword"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextEmailRegistro"
-            android:layout_margin="20dp" />
+            app:layout_constraintTop_toBottomOf="@id/editTextEmailRegistro">
 
-        <EditText
-            android:id="@+id/editTextConfirmarContraseniaRegistro"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextContraseniaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:background="@drawable/edittext_desing"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:padding="15dp"
+                 />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutConfirmarContraseniaRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirmar Contraseña"
-            android:layout_marginHorizontal="20dp"
-            android:minHeight="48dp"
-            android:padding="15dp"
-            android:background="@drawable/edittext_desing"
+            android:layout_margin="20dp"
             android:textColorHint="#919191"
-            android:inputType="textPassword"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextContraseniaRegistro"
-            android:layout_margin="20dp" />
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutContraseniaRegistro">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextConfirmarContraseniaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirmar Contraseña"
+                android:background="@drawable/edittext_desing"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:padding="15dp"
+
+                 />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnRegistro"
@@ -103,7 +121,7 @@
             android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextConfirmarContraseniaRegistro"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutConfirmarContraseniaRegistro"
             android:layout_marginTop="35dp"
             android:text="Registrarse"
             android:textAllCaps="false"
