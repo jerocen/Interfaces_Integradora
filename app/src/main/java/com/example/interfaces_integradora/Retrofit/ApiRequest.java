@@ -20,4 +20,6 @@ Call<ResponsePostUserLogout> logoutUser(@Header("Authorization") String token);
 @GET("/api/auth/me")
 Call<ResponsePostUserMe> meUser(@Header("Authorization") String token);
 
+@POST("/api/auth/group/create/group")
+Call<ResponsePostUserPlant> createPlant(@Header("Authorization") String token, @Body PostUserPlant postUserPlant);
 }

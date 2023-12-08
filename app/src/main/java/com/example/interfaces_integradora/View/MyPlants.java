@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +27,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.interfaces_integradora.Models.AuthLogout;
 import com.example.interfaces_integradora.Models.DatosUser;
 import com.example.interfaces_integradora.Models.ItemPlant;
+import com.example.interfaces_integradora.Models.Postplant;
 import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -47,7 +50,6 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
 
     SharedPreferences sharedPreferences;
-    Button buttonprueba;
 
     String token;
 
@@ -91,13 +93,43 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
 
 
         fab.setOnClickListener(view -> {
-           BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MyPlants.this, R.style.BottomSheetStyle);
-           View sheetView = LayoutInflater.from(getApplicationContext())
-                   .inflate(R.layout.bottom_dialog,
-                           (ViewGroup) findViewById(R.id.container));
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MyPlants.this, R.style.BottomSheetStyle);
+            View sheetView = LayoutInflater.from(getApplicationContext())
+                    .inflate(R.layout.bottom_dialog,
+                            (ViewGroup) findViewById(R.id.container));
 
-           bottomSheetDialog.setContentView(sheetView);
-              bottomSheetDialog.show();
+            Button agregarPlantaButton = sheetView.findViewById(R.id.agregarPlanta);
+            EditText nombrePlantaEditText = sheetView.findViewById(R.id.nombrePlanta);
+
+            agregarPlantaButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String nombrePlanta = nombrePlantaEditText.getText().toString();
+
+                    Call<ResponsePostUserPlant> call = Postplant.createplant(token, nombrePlanta);
+                    call.enqueue(new Callback<ResponsePostUserPlant>() {
+                        @Override
+                        public void onResponse(Call<ResponsePostUserPlant> call, Response<ResponsePostUserPlant> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(MyPlants.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(MyPlants.this, "Error al crear la planta", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponsePostUserPlant> call, Throwable t) {
+                            Toast.makeText(MyPlants.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    // Cierra el BottomDialog
+                    bottomSheetDialog.dismiss();
+                }
+            });
+
+            bottomSheetDialog.setContentView(sheetView);
+            bottomSheetDialog.show();
         });
 
         
