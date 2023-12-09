@@ -20,22 +20,6 @@ public class DatosUser {
         ApiRequest apiRequest = retrofit.create(ApiRequest.class);
         return apiRequest.meUser("Bearer " + token);
 
-        /*Call<ResponsePostUserMe> call = DatosUser.obtenerDatosUser(token);
-        call.enqueue(new Callback<ResponsePostUserMe>() {
-            @Override
-            public void onResponse(Call<ResponsePostUserMe> call, Response<ResponsePostUserMe> response) {
-                if (response.isSuccessful()) {
-                    String username = response.body().getName();
-                    textViewUsername.setText(username);
-                } else {
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
-            }
-        });
-        */
 
     }
 }
