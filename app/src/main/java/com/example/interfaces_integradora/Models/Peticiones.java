@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
-import com.example.interfaces_integradora.Retrofit.PostUserPlant;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserChangePassword;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
@@ -26,14 +26,19 @@ public class Peticiones {
 
     public Call<ResponsePostUserPlant> createplant(String token, String nombrePlanta){
         // Crea una nueva instancia de PostUserPlant y establece el nombre de la planta
-        PostUserPlant postUserPlant = new PostUserPlant();
-        postUserPlant.setName(nombrePlanta);
+        PostUserPlant postUserPlant = new PostUserPlant(nombrePlanta);
 
         return apiRequest.createPlant("Bearer " + token, postUserPlant);
     }
 
     public Call<ResponsePostUserMe> obtenerDatosUser(String token) {
         return apiRequest.meUser("Bearer " + token);
+    }
+
+    public Call<ResponsePostUserChangePassword> changePassword(String token, String password, String password_confirmation) {
+        PostUserChangePassword postUserChangePassword = new PostUserChangePassword(password, password_confirmation);
+
+        return apiRequest.changePassword("Bearer " + token, postUserChangePassword);
     }
 
     public void logoutUser(Context context, String token, Runnable onSuccess) {

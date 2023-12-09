@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.interfaces_integradora.R;
-import com.example.interfaces_integradora.Retrofit.PostUserLogin;
+import com.example.interfaces_integradora.Models.PostUserLogin;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogin;
 import com.example.interfaces_integradora.ViewModel.ViewModelLogin;
 

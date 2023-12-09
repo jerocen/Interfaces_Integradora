@@ -22,9 +22,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.interfaces_integradora.Adapters.PlantAdaptor;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.Models.Peticiones;
-import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
@@ -152,9 +152,9 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         itemPlants.add(new ItemPlant("Orquídeas", R.drawable.icon4));
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(new PlantsAdaptador(getApplicationContext(),itemPlants));
+        recyclerView.setAdapter(new PlantAdaptor(itemPlants));
 
-        PlantsAdaptador adapter = new PlantsAdaptador(getApplicationContext(), itemPlants);
+        PlantAdaptor adapter = new PlantAdaptor(itemPlants);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(adapter);
     }

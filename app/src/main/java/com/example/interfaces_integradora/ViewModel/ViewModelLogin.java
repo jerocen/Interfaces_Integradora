@@ -1,18 +1,11 @@
 package com.example.interfaces_integradora.ViewModel;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.widget.Toast;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
-import com.example.interfaces_integradora.Retrofit.PostUserLogin;
+import com.example.interfaces_integradora.Models.PostUserLogin;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogin;
-import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
 
 import retrofit2.Call;
 import retrofit2.Callback;

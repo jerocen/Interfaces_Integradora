@@ -11,56 +11,72 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <TextView
-            android:id="@+id/newPasswdTitle"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-
-            android:textSize="40dp"
-            android:textAlignment="center"
-            android:text="Edita tu contraseña"
-            android:padding="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/cambiopass"
+            android:id="@+id/changePasswdImg"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <EditText
-            android:id="@+id/newPasswd"
-            android:background="@drawable/edittext_desing"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutContrasenia"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:hint="Escribe tu nueva contraseña"
-            android:padding="26dp"
+            android:layout_margin="20dp"
             android:textColorHint="#919191"
-            android:textColor="@color/black"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newPasswdTitle" />
+            app:layout_constraintTop_toBottomOf="@id/changePasswdImg">
 
-        <EditText
-            android:id="@+id/confirmNewPasswd"
-            android:background="#e1e1e1"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/newPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nueva Contraseña"
+                android:background="@drawable/edittext_desing"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:padding="15dp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutConfirmarContrasenia"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_marginTop="72dp"
+            android:layout_margin="20dp"
             android:textColorHint="#919191"
-            android:hint="Confirmar nueva contrsaseña"
-            android:padding="26dp"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newPasswd" />
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutContrasenia">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Confirmpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirmar Contraseña"
+                android:background="@drawable/edittext_desing"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:padding="15dp"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
+            android:id="@+id/btnConfirmarCambio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirmar cambio"
-
-            app:layout_constraintTop_toBottomOf="@id/confirmNewPasswd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutConfirmarContrasenia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="72dp"

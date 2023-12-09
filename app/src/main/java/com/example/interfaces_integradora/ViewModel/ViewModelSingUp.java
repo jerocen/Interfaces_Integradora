@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
-import com.example.interfaces_integradora.Retrofit.PostUserRegister;
+import com.example.interfaces_integradora.Models.PostUserRegister;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserRegister;
 
 import retrofit2.Call;

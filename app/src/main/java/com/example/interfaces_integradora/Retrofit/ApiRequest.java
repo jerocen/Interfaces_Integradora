@@ -1,5 +1,10 @@
 package com.example.interfaces_integradora.Retrofit;
 
+import com.example.interfaces_integradora.Models.PostUserChangePassword;
+import com.example.interfaces_integradora.Models.PostUserLogin;
+import com.example.interfaces_integradora.Models.PostUserPlant;
+import com.example.interfaces_integradora.Models.PostUserRegister;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -22,4 +27,7 @@ Call<ResponsePostUserMe> meUser(@Header("Authorization") String token);
 
 @POST("/api/auth/group/create/group")
 Call<ResponsePostUserPlant> createPlant(@Header("Authorization") String token, @Body PostUserPlant postUserPlant);
+
+@POST("/api/auth/changepassword")
+    Call<ResponsePostUserChangePassword> changePassword(@Header("Authorization") String token, @Body PostUserChangePassword postUserChangePassword);
 }

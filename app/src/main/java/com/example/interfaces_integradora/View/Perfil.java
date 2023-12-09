@@ -2,9 +2,12 @@ package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
@@ -17,6 +20,7 @@ public class Perfil extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     TextView nombre, correo;
     String token;
+    Button btnEdit;
 
     Peticiones peticiones = new Peticiones();
     @Override
@@ -31,6 +35,12 @@ public class Perfil extends AppCompatActivity {
 
         nombre = findViewById(R.id.nom);
         correo = findViewById(R.id.ema);
+        btnEdit = findViewById(R.id.btn);
+
+        btnEdit.setOnClickListener(v -> {
+            Intent i = new Intent(Perfil.this, EditProfileInfo.class);
+            startActivity(i);
+        });
 
         Call<ResponsePostUserMe> call = peticiones.obtenerDatosUser(token);
         call.enqueue(new retrofit2.Callback<ResponsePostUserMe>() {
@@ -39,12 +49,15 @@ public class Perfil extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     nombre.setText(response.body().getName());
                     correo.setText(response.body().getEmail());
+
                 }
             }
 
             @Override
             public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
-
+               Intent i = new Intent(Perfil.this, LogInView.class);
+               startActivity(i);
+               finish();
             }
         });
     }

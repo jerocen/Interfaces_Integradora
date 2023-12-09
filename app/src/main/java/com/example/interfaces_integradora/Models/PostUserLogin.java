@@ -1,4 +1,4 @@
-package com.example.interfaces_integradora.Retrofit;
+package com.example.interfaces_integradora.Models;
 
 public class PostUserLogin {
     private String email;
