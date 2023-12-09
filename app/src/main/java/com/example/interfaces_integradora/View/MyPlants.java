@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +20,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.interfaces_integradora.Models.AuthLogout;
-import com.example.interfaces_integradora.Models.DatosUser;
 import com.example.interfaces_integradora.Models.ItemPlant;
-import com.example.interfaces_integradora.Models.Postplant;
+import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.PlantsAdaptador;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
@@ -55,6 +51,8 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
 
     FloatingActionButton fab;
 
+    Peticiones Peticiones = new Peticiones();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +70,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         TextView correo = headerView.findViewById(R.id.correo);
 
         // Haz una llamada a la función obtenerDatosUser
-        Call<ResponsePostUserMe> call = DatosUser.obtenerDatosUser(token);
+        Call<ResponsePostUserMe> call = Peticiones.obtenerDatosUser(token);
         call.enqueue(new Callback<ResponsePostUserMe>() {
             @Override
             public void onResponse(Call<ResponsePostUserMe> call, Response<ResponsePostUserMe> response) {
@@ -106,7 +104,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
                 public void onClick(View v) {
                     String nombrePlanta = nombrePlantaEditText.getText().toString();
 
-                    Call<ResponsePostUserPlant> call = Postplant.createplant(token, nombrePlanta);
+                    Call<ResponsePostUserPlant> call = Peticiones.createplant(token, nombrePlanta);
                     call.enqueue(new Callback<ResponsePostUserPlant>() {
                         @Override
                         public void onResponse(Call<ResponsePostUserPlant> call, Response<ResponsePostUserPlant> response) {
@@ -186,7 +184,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         } else if (itemId == R.id.nav_logout) {
             Log.d("MyPlants", "Token: " + token);
             Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
-            AuthLogout.logoutUser(this, token, () -> {
+            Peticiones.logoutUser(this, token, () -> {
                 Intent intent = new Intent(this, LogInView.class);
                 startActivity(intent);
                 finish();

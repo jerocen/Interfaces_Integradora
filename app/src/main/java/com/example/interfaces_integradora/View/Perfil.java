@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.interfaces_integradora.Models.DatosUser;
+import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 
@@ -18,10 +18,13 @@ public class Perfil extends AppCompatActivity {
     TextView nombre, correo;
     String token;
 
+    Peticiones peticiones = new Peticiones();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
+
 
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
@@ -29,7 +32,7 @@ public class Perfil extends AppCompatActivity {
         nombre = findViewById(R.id.nom);
         correo = findViewById(R.id.ema);
 
-        Call<ResponsePostUserMe> call = DatosUser.obtenerDatosUser(token);
+        Call<ResponsePostUserMe> call = peticiones.obtenerDatosUser(token);
         call.enqueue(new retrofit2.Callback<ResponsePostUserMe>() {
             @Override
             public void onResponse(Call<ResponsePostUserMe> call, retrofit2.Response<ResponsePostUserMe> response) {

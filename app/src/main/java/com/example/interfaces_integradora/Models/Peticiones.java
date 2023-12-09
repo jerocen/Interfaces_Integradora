@@ -3,29 +3,40 @@ package com.example.interfaces_integradora.Models;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
+import com.example.interfaces_integradora.Retrofit.PostUserPlant;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
-import com.example.interfaces_integradora.View.LogInView;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AuthLogout {
-    public static void logoutUser(Context context, String token, Runnable onSuccess) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://52.0.199.187")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+public class Peticiones {
+    private ApiRequest apiRequest;
 
-        ApiRequest apiRequest = retrofit.create(ApiRequest.class);
+    public Peticiones() {
+        this.apiRequest = RetrofitClient.getClient("http://52.0.199.187").create(ApiRequest.class);
+    }
+
+    public Call<ResponsePostUserPlant> createplant(String token, String nombrePlanta){
+        // Crea una nueva instancia de PostUserPlant y establece el nombre de la planta
+        PostUserPlant postUserPlant = new PostUserPlant();
+        postUserPlant.setName(nombrePlanta);
+
+        return apiRequest.createPlant("Bearer " + token, postUserPlant);
+    }
+
+    public Call<ResponsePostUserMe> obtenerDatosUser(String token) {
+        return apiRequest.meUser("Bearer " + token);
+    }
+
+    public void logoutUser(Context context, String token, Runnable onSuccess) {
         Call<ResponsePostUserLogout> call = apiRequest.logoutUser("Bearer " + token);
 
         call.enqueue(new Callback<ResponsePostUserLogout>() {
@@ -50,7 +61,6 @@ public class AuthLogout {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<ResponsePostUserLogout> call, Throwable t) {
                 // Manejar el caso de error de red
