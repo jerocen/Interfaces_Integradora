@@ -30,4 +30,9 @@ Call<ResponsePostUserPlant> createPlant(@Header("Authorization") String token, @
 
 @POST("/api/auth/changepassword")
     Call<ResponsePostUserChangePassword> changePassword(@Header("Authorization") String token, @Body PostUserChangePassword postUserChangePassword);
+
+@GET("/api/auth/group/all/group")
+    Call<ResponseGetUserPlant> getPlants(@Header("Authorization") String token);
+
 }
+

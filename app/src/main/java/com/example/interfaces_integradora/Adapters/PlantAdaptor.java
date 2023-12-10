@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.R;
+import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
 public class PlantAdaptor extends RecyclerView.Adapter<PlantAdaptor.ViewHolder>{
 
-    List<ItemPlant> items;
+    List<ResponseGetUserPlant.Group> items;
 
-    public PlantAdaptor(List<ItemPlant> items) {
+    public PlantAdaptor(List<ResponseGetUserPlant.Group> items) {
         this.items = items;
     }
     @NonNull
@@ -30,7 +31,7 @@ public class PlantAdaptor extends RecyclerView.Adapter<PlantAdaptor.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull PlantAdaptor.ViewHolder holder, int position) {
-        ItemPlant plant = items.get(position);
+        ResponseGetUserPlant.Group plant = items.get(position);
         holder.setData(plant);
     }
 
@@ -42,17 +43,17 @@ public class PlantAdaptor extends RecyclerView.Adapter<PlantAdaptor.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre;
         ShapeableImageView imageview;
-        ItemPlant pt;
+        ResponseGetUserPlant.Group pt;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.plantName);
             imageview = itemView.findViewById(R.id.imagePlantView);
         }
 
-        public void setData(ItemPlant plant) {
+        public void setData(ResponseGetUserPlant.Group plant) {
             pt = plant;
-            nombre.setText(plant.getNombre());
-            imageview.setImageResource(plant.getImage());
+            nombre.setText(plant.getName());
+            //imageview.setImageResource(plant.getGroupkey());
         }
     }
 }

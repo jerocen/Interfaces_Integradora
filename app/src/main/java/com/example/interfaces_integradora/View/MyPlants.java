@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,8 +28,10 @@ import com.example.interfaces_integradora.Adapters.PlantAdaptor;
 import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
+import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
+import com.example.interfaces_integradora.ViewModel.ViewModelMyPlant;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -51,6 +55,8 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
 
     FloatingActionButton fab;
 
+    ViewModelMyPlant viewModel;
+
     Peticiones Peticiones = new Peticiones();
 
     @Override
@@ -66,29 +72,32 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
         View headerView = navigationView.getHeaderView(0);
-        TextView nombrePerfil = headerView.findViewById(R.id.nombreperfil);
-        TextView correo = headerView.findViewById(R.id.correo);
+        TextView nombrePerfilTextView = headerView.findViewById(R.id.nombreperfil);
+        TextView correoTextView = headerView.findViewById(R.id.correo);
 
-        // Haz una llamada a la función obtenerDatosUser
-        Call<ResponsePostUserMe> call = Peticiones.obtenerDatosUser(token);
-        call.enqueue(new Callback<ResponsePostUserMe>() {
-            @Override
-            public void onResponse(Call<ResponsePostUserMe> call, Response<ResponsePostUserMe> response) {
-                if (response.isSuccessful()) {
-                    // Actualiza los TextViews con los datos del usuario
-                    nombrePerfil.setText(response.body().getName());
-                    correo.setText(response.body().getEmail());
-                } else {
-                    Toast.makeText(MyPlants.this, "Error al obtener datos del usuario", Toast.LENGTH_SHORT).show();
-                }
-            }
+        viewModel = new ViewModelProvider(this).get(ViewModelMyPlant.class);
 
+// Observa los cambios en el nombre del perfil y el correo
+        viewModel.getNombrePerfil().observe(this, new Observer<String>() {
             @Override
-            public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
-                Toast.makeText(MyPlants.this, "Error de conexion", Toast.LENGTH_SHORT).show();
+            public void onChanged(String nombrePerfil) {
+                nombrePerfilTextView.setText(nombrePerfil);
             }
         });
 
+        viewModel.getToastMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String toastMessage) {
+                Toast.makeText(MyPlants.this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+        viewModel.getCorreo().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String correo) {
+                correoTextView.setText(correo);
+            }
+        });
+        viewModel.obtenerDatosUser(token);
 
         fab.setOnClickListener(view -> {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MyPlants.this, R.style.BottomSheetStyle);
@@ -104,25 +113,11 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
                 public void onClick(View v) {
                     String nombrePlanta = nombrePlantaEditText.getText().toString();
 
-                    Call<ResponsePostUserPlant> call = Peticiones.createplant(token, nombrePlanta);
-                    call.enqueue(new Callback<ResponsePostUserPlant>() {
-                        @Override
-                        public void onResponse(Call<ResponsePostUserPlant> call, Response<ResponsePostUserPlant> response) {
-                            if (response.isSuccessful()) {
-                                Toast.makeText(MyPlants.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(MyPlants.this, "Error al crear la planta", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponsePostUserPlant> call, Throwable t) {
-                            Toast.makeText(MyPlants.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    viewModel.agregarPlanta(token, nombrePlanta);
 
                     // Cierra el BottomDialog
                     bottomSheetDialog.dismiss();
+
                 }
             });
 
@@ -130,7 +125,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
             bottomSheetDialog.show();
         });
 
-        
+
         setSupportActionBar(toolbar);
 
         navigationView.bringToFront();
@@ -145,19 +140,20 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
 
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlants);
 
-        List<ItemPlant> itemPlants = new ArrayList<ItemPlant>();
-        itemPlants.add(new ItemPlant("Lirios", R.drawable.icon1));
-        itemPlants.add(new ItemPlant("Tulipan", R.drawable.icon2));
-        itemPlants.add(new ItemPlant("Margarita", R.drawable.icon3));
-        itemPlants.add(new ItemPlant("Orquídeas", R.drawable.icon4));
+        viewModel.getItemPlants().observe(this, new Observer<List<ResponseGetUserPlant.Group>>() {
+            @Override
+            public void onChanged(List<ResponseGetUserPlant.Group> groups) {
+                // Actualiza el adaptador de tu RecyclerView
+                PlantAdaptor adapter = new PlantAdaptor(groups);
+                recyclerView.setLayoutManager(new GridLayoutManager(MyPlants.this, 2));
+                recyclerView.setAdapter(adapter);
+            }
+        });
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(new PlantAdaptor(itemPlants));
-
-        PlantAdaptor adapter = new PlantAdaptor(itemPlants);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(adapter);
+        // Obtén los datos iniciales
+        viewModel.obtenerDatosPlant(token);
     }
+
 
     @Override
     public void onBackPressed() {
