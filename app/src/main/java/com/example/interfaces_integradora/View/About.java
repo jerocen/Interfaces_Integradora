@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.interfaces_integradora.Models.Peticiones;
@@ -27,18 +31,54 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
     NavigationView navigationView;
     Toolbar toolbar;
 
+    SharedPreferences sharedPreferences;
     String token;
 
-    com.example.interfaces_integradora.Models.Peticiones Peticiones = new Peticiones();
+    FloatingActionButton fab;
+
+    ViewModelMyPlant viewModel;
+
+    Peticiones Peticiones = new Peticiones();
+
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
+
         drawerLayout = findViewById(R.id.drawer_layout2);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        View headerView = navigationView.getHeaderView(0);
+        TextView nombrePerfilTextView = headerView.findViewById(R.id.nombreperfil);
+        TextView correoTextView = headerView.findViewById(R.id.correo);
+
+        viewModel = new ViewModelProvider(this).get(ViewModelMyPlant.class);
+
+        viewModel.getNombrePerfil().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String nombrePerfil) {
+                nombrePerfilTextView.setText(nombrePerfil);
+            }
+        });
+
+        viewModel.getToastMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String toastMessage) {
+                Toast.makeText(About.this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+        viewModel.getCorreo().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String correo) {
+                correoTextView.setText(correo);
+            }
+        });
+        viewModel.obtenerDatosUser(token);
 
         setSupportActionBar(toolbar);
 
@@ -50,6 +90,15 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_about);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer((GravityCompat.START));
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
