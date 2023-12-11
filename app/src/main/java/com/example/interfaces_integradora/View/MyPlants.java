@@ -51,7 +51,6 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-
     SharedPreferences sharedPreferences;
     String token;
 
@@ -118,6 +117,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
                     String nombrePlanta = nombrePlantaEditText.getText().toString();
 
                     viewModel.agregarPlanta(token, nombrePlanta);
+
 
                     // Cierra el BottomDialog
                     bottomSheetDialog.dismiss();

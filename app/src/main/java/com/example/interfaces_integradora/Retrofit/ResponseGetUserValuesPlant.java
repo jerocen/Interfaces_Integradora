@@ -1,8 +1,10 @@
 package com.example.interfaces_integradora.Retrofit;
 
+import java.util.List;
+
 public class ResponseGetUserValuesPlant {
     private String msg;
-    private data data;
+    private List<data> data;
 
     public String getMsg() {
         return msg;
@@ -12,15 +14,16 @@ public class ResponseGetUserValuesPlant {
         this.msg = msg;
     }
 
-    public data getData() {
+    public List<ResponseGetUserValuesPlant.data> getData() {
         return data;
     }
 
-    public void setData(data data) {
+    public void setData(List<ResponseGetUserValuesPlant.data> data) {
         this.data = data;
     }
 
-    class data{
+
+    public class data{
         private int id;
         private String value;
         private int feed_id;
