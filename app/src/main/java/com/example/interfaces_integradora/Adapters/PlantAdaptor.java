@@ -9,8 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.interfaces_integradora.DetallePlanta;
-import com.example.interfaces_integradora.Models.ItemPlant;
+import com.example.interfaces_integradora.View.DetallePlanta;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
 import com.google.android.material.imageview.ShapeableImageView;

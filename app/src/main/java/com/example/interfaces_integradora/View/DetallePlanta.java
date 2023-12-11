@@ -1,16 +1,14 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
-import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.interfaces_integradora.Models.Peticiones;
+import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
 
 import java.util.List;

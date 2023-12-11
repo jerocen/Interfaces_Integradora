@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".DetallePlanta"
+            android:name=".View.DetallePlanta"
             android:exported="false" />
         <activity
             android:name=".Background_flur"
