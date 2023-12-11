@@ -86,6 +86,7 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_about);
+        getSupportActionBar().setTitle("Conocenos");
     }
 
     @Override

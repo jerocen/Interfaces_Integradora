@@ -84,6 +84,7 @@ public class Contact extends AppCompatActivity implements NavigationView.OnNavig
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_contact);
+        getSupportActionBar().setTitle("Contáctanos");
     }
 
     @Override

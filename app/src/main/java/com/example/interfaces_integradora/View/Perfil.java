@@ -90,6 +90,7 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_perfil);
+        getSupportActionBar().setTitle("Mi perfil");
 
         nombre = findViewById(R.id.nom);
         correo = findViewById(R.id.ema);
