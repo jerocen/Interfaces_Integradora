@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel;
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
 import com.example.interfaces_integradora.Models.PostUserRegister;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserRegister;
+import com.google.gson.Gson;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +21,11 @@ public class ViewModelSingUp extends ViewModel {
 
     private MutableLiveData<ResponsePostUserRegister> registerResult = new MutableLiveData<>();
     private MutableLiveData<String> error = new MutableLiveData<>();
+    private MutableLiveData<ResponsePostUserRegister.ErrorResponse> errorResponse = new MutableLiveData<>();
 
+    public LiveData<ResponsePostUserRegister.ErrorResponse> getErrorResponse() {
+        return errorResponse;
+    }
     public LiveData<ResponsePostUserRegister> getRegisterResult() {
         return registerResult;
     }
@@ -42,7 +49,12 @@ public class ViewModelSingUp extends ViewModel {
                 if (response.isSuccessful()) {
                     registerResult.postValue(response.body());
                 } else {
-                    registerResult.postValue(null);
+                    try {
+                        ResponsePostUserRegister.ErrorResponse errorResp = new Gson().fromJson(response.errorBody().string(), ResponsePostUserRegister.ErrorResponse.class);
+                        errorResponse.postValue(errorResp);
+                    } catch (IOException e) {
+                        error.postValue(e.getMessage());
+                    }
                 }
             }
 

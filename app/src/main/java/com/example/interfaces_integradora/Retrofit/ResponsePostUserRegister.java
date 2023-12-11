@@ -1,11 +1,17 @@
 package com.example.interfaces_integradora.Retrofit;
 
+import java.util.List;
+import java.util.Map;
+
 public class ResponsePostUserRegister {
 
     private String msg;
     private Userdata userdata;
+    private ErrorResponse errorResponse;
 
-
+    public ErrorResponse getErrorResponse() {
+        return errorResponse;
+    }
     public Userdata getUserdata() {
         return userdata;
     }
@@ -20,6 +26,18 @@ public class ResponsePostUserRegister {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+    public class ErrorResponse {
+        private String msg;
+        private Map<String, List<String>> data;
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public Map<String, List<String>> getData() {
+            return data;
+        }
     }
 
     public class Userdata{
