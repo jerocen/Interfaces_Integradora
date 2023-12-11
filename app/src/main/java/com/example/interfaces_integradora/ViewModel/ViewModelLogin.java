@@ -36,30 +36,15 @@ public class ViewModelLogin extends ViewModel {
         return error;
     }
 
-    public void loginUser(PostUserLogin user) {
+    private final ApiRequest repository;
+
+    public ViewModelLogin() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://52.0.199.187")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ApiRequest apiRequest = retrofit.create(ApiRequest.class);
-        Call<ResponsePostUserLogin> call = apiRequest.loginUser(user);
-
-        call.enqueue(new Callback<ResponsePostUserLogin>() {
-            @Override
-            public void onResponse(Call<ResponsePostUserLogin> call, Response<ResponsePostUserLogin> response) {
-                if (response.isSuccessful()) {
-                    loginresult.postValue(response.body());
-                } else {
-                    loginresult.postValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponsePostUserLogin> call, Throwable t) {
-                error.postValue(t.getMessage());
-            }
-        });
+        repository = retrofit.create(ApiRequest.class);
     }
 
     public void forgetPassword(String email){
@@ -82,5 +67,28 @@ public class ViewModelLogin extends ViewModel {
         });
     }
 
+    public void loginUser(PostUserLogin postUserLogin) {
+        repository.loginUser(postUserLogin).enqueue(new Callback<ResponsePostUserLogin>() {
+            @Override
+            public void onResponse(Call<ResponsePostUserLogin> call, Response<ResponsePostUserLogin> response) {
+                if (response.isSuccessful()) {
+                    loginresult.postValue(response.body());
+                } else {
+                    // Aquí manejas los códigos de estado HTTP
+                    if (response.code() == 401) {
+                        toastMessage.postValue("Unauthorized");
+                    } else if (response.code() == 403) {
+                        toastMessage.postValue("Cuenta no activa");
+                    } else {
+                        toastMessage.postValue("Error desconocido");
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponsePostUserLogin> call, Throwable t) {
+                error.postValue(t.getMessage());
+            }
+        });
+    }
 }

@@ -28,6 +28,7 @@ public class LogInView extends AppCompatActivity {
     SharedPreferences.Editor myEdit;
 
     TextView btnforget;
+    TextView tvErrorMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class LogInView extends AppCompatActivity {
         Button btnlogin = findViewById(R.id.btnlogin);
         TextView btnsignup = findViewById(R.id.registrate);
         btnforget = findViewById(R.id.olvidasteContrasenia);
+        tvErrorMessage = findViewById(R.id.tvErrorMessage);
 
         if (revisarSesion()) {
             Intent intent = new Intent(LogInView.this, MyPlants.class);
@@ -68,10 +70,11 @@ public class LogInView extends AppCompatActivity {
 
         viewModel.getToastMessage().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String toastMessage) {
-                Toast.makeText(LogInView.this, toastMessage, Toast.LENGTH_SHORT).show();
+            public void onChanged(String errorMessage) {
+                tvErrorMessage.setText(errorMessage);
             }
         });
+
         viewModel.getLoginresult().observe(this, new Observer<ResponsePostUserLogin>() {
             @Override
             public void onChanged(ResponsePostUserLogin response) {
@@ -96,6 +99,13 @@ public class LogInView extends AppCompatActivity {
             @Override
             public void onChanged(String error) {
                 Toast.makeText(LogInView.this, "Error de conexión: " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        viewModel.getToastMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String toastMessage) {
+                Toast.makeText(LogInView.this, toastMessage, Toast.LENGTH_SHORT).show();
             }
         });
 
