@@ -10,6 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface ApiRequest {
 
@@ -28,11 +29,14 @@ Call<ResponsePostUserMe> meUser(@Header("Authorization") String token);
 @POST("/api/auth/create/group")
 Call<ResponsePostUserPlant> createPlant(@Header("Authorization") String token, @Body PostUserPlant postUserPlant);
 
-@POST("/api/auth/changepassword")
+@PUT("/api/auth/changepassword")
     Call<ResponsePostUserChangePassword> changePassword(@Header("Authorization") String token, @Body PostUserChangePassword postUserChangePassword);
 
 @GET("/api/auth/all/group")
     Call<ResponseGetUserPlant> getPlants(@Header("Authorization") String token);
+
+@GET("/api/auth/all/feed")
+    Call<ResponseGetUserValuesPlant> getValuesPlant(@Header("Authorization") String token);
 
 }
 

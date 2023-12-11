@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
+import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserChangePassword;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
@@ -38,6 +39,10 @@ public class Peticiones {
 
     public Call<ResponseGetUserPlant> obtenerDatosPlant(String token) {
         return apiRequest.getPlants("Bearer " + token);
+    }
+
+    public Call<ResponseGetUserValuesPlant> obtenerDatosValuesPlant(String token) {
+        return apiRequest.getValuesPlant("Bearer " + token);
     }
 
     public Call<ResponsePostUserChangePassword> changePassword(String token, String password, String password_confirmation) {
