@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,147 +7,174 @@
     android:background="@drawable/shapebackground"
     tools:context=".View.About">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+
+        />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="¿Quienes somos?"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/text" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="Bienvenido a Life Plants, tu aliado en el cuidado de plantas domésticas. Nos dedicamos a ofrecer a los amantes de las plantas una herramienta única y especializada que facilita el cuidado de sus plantas de interior. Somos apasionados por hacer que la experiencia de cuidar plantas en el hogar sea agradable y exitosa."
-            app:layout_constraintBottom_toTopOf="@+id/tit2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tit" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/menu"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <TextView
-            android:id="@+id/tit2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Visión"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text"
-            app:layout_constraintBottom_toTopOf="@+id/text2"/>
+            <TextView
+                android:id="@+id/tit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="¿Quienes somos?"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/text" />
 
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tit2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/img"
-            android:text="En Life Plants, nos visualizamos como líderes en el ámbito del cuidado de plantas de interior, proporcionando soluciones tecnológicas que mejoren la calidad de vida de nuestros usuarios y de sus plantas."
-            app:layout_constraintBottom_toTopOf="@+id/tit3" />
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="Bienvenido a Life Plants, tu aliado en el cuidado de plantas domésticas. Nos dedicamos a ofrecer a los amantes de las plantas una herramienta única y especializada que facilita el cuidado de sus plantas de interior. Somos apasionados por hacer que la experiencia de cuidar plantas en el hogar sea agradable y exitosa."
+                app:layout_constraintBottom_toTopOf="@+id/tit2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tit" />
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:src="@drawable/vison"
-            app:layout_constraintStart_toEndOf="@+id/text2"
-            app:layout_constraintTop_toBottomOf="@+id/tit2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tit3" />
+            <TextView
+                android:id="@+id/tit2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Visión"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text"
+                app:layout_constraintBottom_toTopOf="@+id/text2"/>
 
-        <TextView
-            android:id="@+id/tit3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Misión"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text2"
-            app:layout_constraintBottom_toTopOf="@+id/text3"/>
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/tit2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img"
+                android:text="En Life Plants, nos visualizamos como líderes en el ámbito del cuidado de plantas de interior, proporcionando soluciones tecnológicas que mejoren la calidad de vida de nuestros usuarios y de sus plantas."
+                app:layout_constraintBottom_toTopOf="@+id/tit3" />
 
-        <TextView
-            android:id="@+id/text3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tit3"
-            app:layout_constraintEnd_toStartOf="@+id/img2"
-            app:layout_constraintBottom_toTopOf="@+id/tit4"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="Nuestra misión es ofrecer una aplicación Android intuitiva y funcional, diseñada exclusivamente para el cuidado de plantas domésticas."/>
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/vison"
+                app:layout_constraintStart_toEndOf="@+id/text2"
+                app:layout_constraintTop_toBottomOf="@+id/tit2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tit3" />
 
-        <ImageView
-            android:id="@+id/img2"
-            android:src="@drawable/mision"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            app:layout_constraintTop_toBottomOf="@+id/tit3"
-            app:layout_constraintStart_toEndOf="@+id/text3"
-            app:layout_constraintBottom_toTopOf="@+id/tit4"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/tit3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Misión"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text2"
+                app:layout_constraintBottom_toTopOf="@+id/text3"/>
 
-        <TextView
-            android:id="@+id/tit4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Objetivo"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text3"
-            app:layout_constraintBottom_toTopOf="@+id/text4"/>
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/tit3"
+                app:layout_constraintEnd_toStartOf="@+id/img2"
+                app:layout_constraintBottom_toTopOf="@+id/tit4"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Nuestra misión es ofrecer una aplicación Android intuitiva y funcional, diseñada exclusivamente para el cuidado de plantas domésticas."/>
 
-        <TextView
-            android:id="@+id/text4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tit4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/img3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="Nos esforzamos por ser el recurso de confianza para los amantes de las plantas domésticas, al integrar funcionalidades específicas que hagan que el cuidado sea más accesible y gratificante. Buscamos mejorar la experiencia de cultivar plantas en interiores y contribuir al bienestar de nuestros usuarios y sus espacios hogareños."/>
+            <ImageView
+                android:id="@+id/img2"
+                android:src="@drawable/mision"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:layout_constraintTop_toBottomOf="@+id/tit3"
+                app:layout_constraintStart_toEndOf="@+id/text3"
+                app:layout_constraintBottom_toTopOf="@+id/tit4"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        <ImageView
-            android:id="@+id/img3"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:src="@drawable/objetivo"
-            app:layout_constraintStart_toEndOf="@+id/text4"
-            app:layout_constraintTop_toBottomOf="@+id/tit4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                android:id="@+id/tit4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Objetivo"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text3"
+                app:layout_constraintBottom_toTopOf="@+id/text4"/>
 
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/tit4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Nos esforzamos por ser el recurso de confianza para los amantes de las plantas domésticas, al integrar funcionalidades específicas que hagan que el cuidado sea más accesible y gratificante. Buscamos mejorar la experiencia de cultivar plantas en interiores y contribuir al bienestar de nuestros usuarios y sus espacios hogareños."/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/img3"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/objetivo"
+                app:layout_constraintStart_toEndOf="@+id/text4"
+                app:layout_constraintTop_toBottomOf="@+id/tit4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.drawerlayout.widget.DrawerLayout>
