@@ -34,13 +34,9 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
     SharedPreferences sharedPreferences;
     String token;
 
-    FloatingActionButton fab;
-
     ViewModelMyPlant viewModel;
 
     Peticiones Peticiones = new Peticiones();
-
-    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
