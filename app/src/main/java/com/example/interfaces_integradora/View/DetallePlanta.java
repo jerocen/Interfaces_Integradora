@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserBoton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -26,8 +28,9 @@ public class DetallePlanta extends AppCompatActivity {
     TextView ValorLluvia;
     TextView ValorAgua;
     TextView ValorLuz;
-
     String token;
+
+    FloatingActionButton fab;
 
     SharedPreferences sharedPreferences;
 
@@ -47,6 +50,7 @@ public class DetallePlanta extends AppCompatActivity {
         ValorLluvia = findViewById(R.id.valor5);
         ValorAgua = findViewById(R.id.valor6);
         ValorLuz = findViewById(R.id.valor7);
+        fab = findViewById(R.id.fab);
 
         Call<ResponseGetUserValuesPlant> call = Peticiones.obtenerDatosValuesPlant(token);
         call.enqueue(new Callback<ResponseGetUserValuesPlant>() {
@@ -88,6 +92,24 @@ public class DetallePlanta extends AppCompatActivity {
             public void onFailure(Call<ResponseGetUserValuesPlant> call, Throwable t) {
                 Toast.makeText(DetallePlanta.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
+        });
+
+        fab.setOnClickListener(view -> {
+            Call<ResponsePostUserBoton> call2 = Peticiones.sendBoton(token);
+            call2.enqueue(new Callback<ResponsePostUserBoton>() {
+                @Override
+                public void onResponse(Call<ResponsePostUserBoton> call, Response<ResponsePostUserBoton> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(DetallePlanta.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponsePostUserBoton> call, Throwable t) {
+                    Toast.makeText(DetallePlanta.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 }

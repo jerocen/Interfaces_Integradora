@@ -42,5 +42,7 @@ Call<ResponseGetUserValuesPlant> getValuesPlant(@Header("Authorization") String 
 @POST("/api/auth/forgetpassword")
 Call<ResponsePostUserForgetPassword> forgetPassword(@Body PostUserForgetPassword postUserForgetPassword);
 
+@POST("/api/auth/all/senddata")
+    Call<ResponsePostUserBoton> sendBoton(@Header("Authorization") String token);
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,357 +7,379 @@
     android:background="#7CF2FFCA"
     tools:context=".View.DetallePlanta">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/top"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/img"
-            android:text="Planta"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:background="@drawable/borde2"
-            />
-
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="0dp"
-            android:layout_height="400dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top"
-            android:src="@drawable/icon3"/>
-
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cub1"
-            android:layout_width="0dp"
-            android:layout_height="136dp"
-            app:layout_constraintTop_toBottomOf="@+id/img"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cub2"
-            app:layout_constraintBottom_toTopOf="@+id/cub4"
-            android:background="@drawable/borde3">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/hum"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+            <TextView
+                android:id="@+id/top"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/hum2"
-                android:src="@drawable/humedad"/>
-
-            <TextView
-                android:id="@+id/hum2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hum"
-                app:layout_constraintBottom_toTopOf="@+id/valor1"
-                android:text="Humedad"
+                app:layout_constraintBottom_toTopOf="@+id/img"
+                android:text="Planta"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:gravity="center"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/valor1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hum2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cub2"
-            android:layout_width="0dp"
-            android:layout_height="136dp"
-            app:layout_constraintTop_toBottomOf="@+id/img"
-            app:layout_constraintStart_toEndOf="@+id/cub1"
-            app:layout_constraintEnd_toStartOf="@+id/cub3"
-            app:layout_constraintBottom_toTopOf="@+id/cub5"
-            android:background="@drawable/borde">
+                android:background="@drawable/borde2"
+                />
 
             <ImageView
-                android:id="@+id/tem"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:id="@+id/img"
+                android:layout_width="0dp"
+                android:layout_height="400dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/tem2"
-                android:src="@drawable/tempe"/>
+                app:layout_constraintTop_toBottomOf="@+id/top"
+                android:src="@drawable/icon3"/>
 
-            <TextView
-                android:id="@+id/tem2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cub1"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                app:layout_constraintTop_toBottomOf="@+id/img"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tem"
-                app:layout_constraintBottom_toTopOf="@+id/valor2"
-                android:text="Temperatura"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                app:layout_constraintEnd_toStartOf="@+id/cub2"
+                app:layout_constraintBottom_toTopOf="@+id/cub4"
+                android:background="@drawable/borde3">
 
-            <TextView
-                android:id="@+id/valor2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/hum"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/hum2"
+                    android:src="@drawable/humedad"/>
+
+                <TextView
+                    android:id="@+id/hum2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hum"
+                    app:layout_constraintBottom_toTopOf="@+id/valor1"
+                    android:text="Humedad"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/valor1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hum2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cub2"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                app:layout_constraintTop_toBottomOf="@+id/img"
+                app:layout_constraintStart_toEndOf="@+id/cub1"
+                app:layout_constraintEnd_toStartOf="@+id/cub3"
+                app:layout_constraintBottom_toTopOf="@+id/cub5"
+                android:background="@drawable/borde">
+
+                <ImageView
+                    android:id="@+id/tem"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tem2"
+                    android:src="@drawable/tempe"/>
+
+                <TextView
+                    android:id="@+id/tem2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tem"
+                    app:layout_constraintBottom_toTopOf="@+id/valor2"
+                    android:text="Temperatura"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/valor2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tem2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cub3"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                app:layout_constraintStart_toEndOf="@+id/cub2"
+                app:layout_constraintTop_toBottomOf="@+id/img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/cub6"
+                android:background="@drawable/borde3">
+
+                <ImageView
+                    android:id="@+id/suelo"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/suelo2"
+                    android:src="@drawable/suelo"/>
+
+                <TextView
+                    android:id="@+id/suelo2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/suelo"
+                    app:layout_constraintBottom_toTopOf="@+id/valor3"
+                    android:text="Suelo"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/valor3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/suelo2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cub4"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                app:layout_constraintTop_toBottomOf="@+id/cub1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cub5">
+
+                <ImageView
+                    android:id="@+id/mov"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/mov2"
+                    android:src="@drawable/mov"/>
+
+                <TextView
+                    android:id="@+id/mov2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mov"
+                    app:layout_constraintBottom_toTopOf="@+id/valor4"
+                    android:text="Movimiento"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/valor4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mov2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cub5"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                app:layout_constraintTop_toBottomOf="@+id/cub2"
+                app:layout_constraintStart_toEndOf="@+id/cub4"
+                app:layout_constraintEnd_toStartOf="@+id/cub6"
+                android:background="@drawable/borde4">
+
+                <ImageView
+                    android:id="@+id/lluv"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/lluv2"
+                    android:src="@drawable/lluvia"/>
+
+                <TextView
+                    android:id="@+id/lluv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lluv"
+                    app:layout_constraintBottom_toTopOf="@+id/valor5"
+                    android:text="Lluvia"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/valor5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lluv2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cub6"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                app:layout_constraintTop_toBottomOf="@+id/cub3"
+                app:layout_constraintStart_toEndOf="@+id/cub5"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/agua"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/agua2"
+                    android:src="@drawable/agua"/>
+
+                <TextView
+                    android:id="@+id/agua2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/agua"
+                    app:layout_constraintBottom_toTopOf="@+id/valor6"
+                    android:text="Cant. Agua"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/valor6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/agua2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/larg"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/cub5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tem2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:layout_margin="10dp"
+                android:background="@drawable/borde5">
 
+                <ImageView
+                    android:id="@+id/luz"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/luz2"
+                    android:src="@drawable/luz"/>
+
+                <TextView
+                    android:id="@+id/luz2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/luz"
+                    app:layout_constraintBottom_toTopOf="@+id/valor7"
+                    android:text="Luz"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/valor7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/luz2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cub3"
-            android:layout_width="0dp"
-            android:layout_height="136dp"
-            app:layout_constraintStart_toEndOf="@+id/cub2"
-            app:layout_constraintTop_toBottomOf="@+id/img"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/cub6"
-            android:background="@drawable/borde3">
+    </ScrollView>
 
-            <ImageView
-                android:id="@+id/suelo"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/suelo2"
-                android:src="@drawable/suelo"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:contentDescription="regar"
+        android:focusable="true"
+        android:src="@drawable/iconoregar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:id="@+id/suelo2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/suelo"
-                app:layout_constraintBottom_toTopOf="@+id/valor3"
-                android:text="Suelo"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/valor3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/suelo2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cub4"
-            android:layout_width="0dp"
-            android:layout_height="136dp"
-            app:layout_constraintTop_toBottomOf="@+id/cub1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cub5">
-
-            <ImageView
-                android:id="@+id/mov"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/mov2"
-                android:src="@drawable/mov"/>
-
-            <TextView
-                android:id="@+id/mov2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mov"
-                app:layout_constraintBottom_toTopOf="@+id/valor4"
-                android:text="Movimiento"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/valor4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mov2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cub5"
-            android:layout_width="0dp"
-            android:layout_height="136dp"
-            app:layout_constraintTop_toBottomOf="@+id/cub2"
-            app:layout_constraintStart_toEndOf="@+id/cub4"
-            app:layout_constraintEnd_toStartOf="@+id/cub6"
-            android:background="@drawable/borde4">
-
-            <ImageView
-                android:id="@+id/lluv"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/lluv2"
-                android:src="@drawable/lluvia"/>
-
-            <TextView
-                android:id="@+id/lluv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lluv"
-                app:layout_constraintBottom_toTopOf="@+id/valor5"
-                android:text="Lluvia"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/valor5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lluv2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cub6"
-            android:layout_width="0dp"
-            android:layout_height="136dp"
-            app:layout_constraintTop_toBottomOf="@+id/cub3"
-            app:layout_constraintStart_toEndOf="@+id/cub5"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <ImageView
-                android:id="@+id/agua"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/agua2"
-                android:src="@drawable/agua"/>
-
-            <TextView
-                android:id="@+id/agua2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/agua"
-                app:layout_constraintBottom_toTopOf="@+id/valor6"
-                android:text="Cant. Agua"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/valor6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/agua2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/larg"
-            android:layout_width="0dp"
-            android:layout_height="136dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/cub5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="10dp"
-            android:background="@drawable/borde5">
-
-            <ImageView
-                android:id="@+id/luz"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/luz2"
-                android:src="@drawable/luz"/>
-
-            <TextView
-                android:id="@+id/luz2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/luz"
-                app:layout_constraintBottom_toTopOf="@+id/valor7"
-                android:text="Luz"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/valor7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/luz2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

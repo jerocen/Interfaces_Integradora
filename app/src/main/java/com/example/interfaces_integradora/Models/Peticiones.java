@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserBoton;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserChangePassword;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserForgetPassword;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
@@ -55,6 +56,10 @@ public class Peticiones {
         PostUserChangePassword postUserChangePassword = new PostUserChangePassword(password, password_confirmation);
 
         return apiRequest.changePassword("Bearer " + token, postUserChangePassword);
+    }
+
+    public Call<ResponsePostUserBoton> sendBoton(String token) {
+        return apiRequest.sendBoton("Bearer " + token);
     }
 
     public void logoutUser(Context context, String token, Runnable onSuccess) {
