@@ -1,7 +1,9 @@
 package com.example.interfaces_integradora.View;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
+import com.example.interfaces_integradora.Utility.NetworkChangeListener;
 import com.example.interfaces_integradora.ViewModel.ViewModelMyPlant;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -58,6 +61,8 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
     ViewModelMyPlant viewModel;
 
     Peticiones Peticiones = new Peticiones();
+
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,7 +145,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
 
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlants);
 
-        viewModel.getItemPlants().observe(this, new Observer<List<ResponseGetUserPlant.Group>>() {
+        /*viewModel.getItemPlants().observe(this, new Observer<List<ResponseGetUserPlant.Group>>() {
             @Override
             public void onChanged(List<ResponseGetUserPlant.Group> groups) {
                 // Actualiza el adaptador de tu RecyclerView
@@ -151,7 +156,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         // Obtén los datos iniciales
-        viewModel.obtenerDatosPlant(token);
+        viewModel.obtenerDatosPlant(token);*/
     }
 
 
@@ -191,6 +196,20 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    protected void onStart() {
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 
 }

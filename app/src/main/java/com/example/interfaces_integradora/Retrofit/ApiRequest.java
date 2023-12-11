@@ -25,13 +25,13 @@ Call<ResponsePostUserLogout> logoutUser(@Header("Authorization") String token);
 @GET("/api/auth/me")
 Call<ResponsePostUserMe> meUser(@Header("Authorization") String token);
 
-@POST("/api/auth/group/create/group")
+@POST("/api/auth/create/group")
 Call<ResponsePostUserPlant> createPlant(@Header("Authorization") String token, @Body PostUserPlant postUserPlant);
 
 @POST("/api/auth/changepassword")
     Call<ResponsePostUserChangePassword> changePassword(@Header("Authorization") String token, @Body PostUserChangePassword postUserChangePassword);
 
-@GET("/api/auth/group/all/group")
+@GET("/api/auth/all/group")
     Call<ResponseGetUserPlant> getPlants(@Header("Authorization") String token);
 
 }
