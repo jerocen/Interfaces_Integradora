@@ -11,6 +11,7 @@ import com.example.interfaces_integradora.Retrofit.ApiRequest;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserChangePassword;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserForgetPassword;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
@@ -27,7 +28,6 @@ public class Peticiones {
     }
 
     public Call<ResponsePostUserPlant> createplant(String token, String nombrePlanta){
-        // Crea una nueva instancia de PostUserPlant y establece el nombre de la planta
         PostUserPlant postUserPlant = new PostUserPlant(nombrePlanta);
 
         return apiRequest.createPlant("Bearer " + token, postUserPlant);
@@ -43,6 +43,12 @@ public class Peticiones {
 
     public Call<ResponseGetUserValuesPlant> obtenerDatosValuesPlant(String token) {
         return apiRequest.getValuesPlant("Bearer " + token);
+    }
+
+    public Call<ResponsePostUserForgetPassword> forgetPassword(String email) {
+        PostUserForgetPassword postUserForgetPassword = new PostUserForgetPassword(email);
+
+        return apiRequest.forgetPassword(postUserForgetPassword);
     }
 
     public Call<ResponsePostUserChangePassword> changePassword(String token, String password, String password_confirmation) {

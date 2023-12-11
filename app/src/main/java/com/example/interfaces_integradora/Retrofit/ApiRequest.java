@@ -1,6 +1,7 @@
 package com.example.interfaces_integradora.Retrofit;
 
 import com.example.interfaces_integradora.Models.PostUserChangePassword;
+import com.example.interfaces_integradora.Models.PostUserForgetPassword;
 import com.example.interfaces_integradora.Models.PostUserLogin;
 import com.example.interfaces_integradora.Models.PostUserPlant;
 import com.example.interfaces_integradora.Models.PostUserRegister;
@@ -38,7 +39,8 @@ Call<ResponsePostUserPlant> createPlant(@Header("Authorization") String token, @
 @GET("/api/auth/all/feed")
 Call<ResponseGetUserValuesPlant> getValuesPlant(@Header("Authorization") String token);
 
-
+@POST("/api/auth/forgetpassword")
+Call<ResponsePostUserForgetPassword> forgetPassword(@Body PostUserForgetPassword postUserForgetPassword);
 
 }
 

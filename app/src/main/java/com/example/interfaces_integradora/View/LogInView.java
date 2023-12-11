@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,12 +19,15 @@ import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Models.PostUserLogin;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogin;
 import com.example.interfaces_integradora.ViewModel.ViewModelLogin;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class LogInView extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
     SharedPreferences.Editor myEdit;
+
+    TextView btnforget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +42,13 @@ public class LogInView extends AppCompatActivity {
         EditText password = findViewById(R.id.editTextContrasenia);
         Button btnlogin = findViewById(R.id.btnlogin);
         TextView btnsignup = findViewById(R.id.registrate);
+        btnforget = findViewById(R.id.olvidasteContrasenia);
 
         if (revisarSesion()) {
             Intent intent = new Intent(LogInView.this, MyPlants.class);
             startActivity(intent);
             finish();
-        }
-        else {
+        } else {
             String mensaje = "No hay sesion iniciada";
             Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
         }
@@ -61,6 +66,12 @@ public class LogInView extends AppCompatActivity {
             }
         });
 
+        viewModel.getToastMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String toastMessage) {
+                Toast.makeText(LogInView.this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
         viewModel.getLoginresult().observe(this, new Observer<ResponsePostUserLogin>() {
             @Override
             public void onChanged(ResponsePostUserLogin response) {
@@ -94,6 +105,33 @@ public class LogInView extends AppCompatActivity {
                 Intent intent = new Intent(LogInView.this, SignUpView.class);
                 startActivity(intent);
             }
+        });
+
+        btnforget.setOnClickListener(view -> {
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(LogInView.this, R.style.BottomSheetStyle);
+            View sheetView = LayoutInflater.from(getApplicationContext())
+                    .inflate(R.layout.bottom_dialog_forget,
+                            (ViewGroup) findViewById(R.id.containerforget));
+
+            Button enviar = sheetView.findViewById(R.id.enviarCorreo);
+            EditText correo = sheetView.findViewById(R.id.correo);
+
+            enviar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String email = correo.getText().toString();
+
+                    viewModel.forgetPassword(email);
+
+
+                    bottomSheetDialog.dismiss();
+
+                }
+            });
+
+
+            bottomSheetDialog.setContentView(sheetView);
+            bottomSheetDialog.show();
         });
     }
 
