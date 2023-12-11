@@ -75,7 +75,7 @@
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextNombreRegistro" />
+            app:layout_constraintTop_toBottomOf="@id/errorNombre" />
 
         <TextView
             android:id="@+id/errorEmail"
@@ -98,7 +98,7 @@
             app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextEmailRegistro">
+            app:layout_constraintTop_toBottomOf="@id/errorEmail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextContraseniaRegistro"
@@ -134,7 +134,7 @@
             app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutContraseniaRegistro">
+            app:layout_constraintTop_toBottomOf="@id/errorPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextConfirmarContraseniaRegistro"
