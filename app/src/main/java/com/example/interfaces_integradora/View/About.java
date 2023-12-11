@@ -111,7 +111,7 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
             Intent intent = new Intent(this, Contact.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_logout) {
-            Log.d("MyPlants", "Token: " + token);
+            Log.d("Conocenos", "Token: " + token);
             Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
             Peticiones.logoutUser(this, token, () -> {
                 Intent intent = new Intent(this, LogInView.class);
