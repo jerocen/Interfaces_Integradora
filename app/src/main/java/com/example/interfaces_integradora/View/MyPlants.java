@@ -27,24 +27,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interfaces_integradora.Adapters.PlantAdaptor;
-import com.example.interfaces_integradora.Models.ItemPlant;
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
-import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
-import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
 import com.example.interfaces_integradora.Utility.NetworkChangeListener;
 import com.example.interfaces_integradora.ViewModel.ViewModelMyPlant;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MyPlants extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

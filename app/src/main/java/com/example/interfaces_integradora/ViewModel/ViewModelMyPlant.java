@@ -1,16 +1,13 @@
 package com.example.interfaces_integradora.ViewModel;
 
-import android.widget.Toast;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
-import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
+import com.example.interfaces_integradora.Retrofit.ResponseGetUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
-import com.example.interfaces_integradora.View.MyPlants;
 
 import java.util.List;
 
@@ -42,10 +39,10 @@ public class ViewModelMyPlant extends ViewModel {
     }
 
     public void obtenerDatosUser(String token) {
-        Call<ResponsePostUserMe> call = peticiones.obtenerDatosUser(token);
-        call.enqueue(new Callback<ResponsePostUserMe>() {
+        Call<ResponseGetUserMe> call = peticiones.obtenerDatosUser(token);
+        call.enqueue(new Callback<ResponseGetUserMe>() {
             @Override
-            public void onResponse(Call<ResponsePostUserMe> call, Response<ResponsePostUserMe> response) {
+            public void onResponse(Call<ResponseGetUserMe> call, Response<ResponseGetUserMe> response) {
                 if (response.isSuccessful()) {
                     nombrePerfil.setValue(response.body().getName());
                     correo.setValue(response.body().getEmail());
@@ -53,7 +50,7 @@ public class ViewModelMyPlant extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
+            public void onFailure(Call<ResponseGetUserMe> call, Throwable t) {
 
             }
         });

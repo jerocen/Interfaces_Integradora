@@ -13,7 +13,7 @@ import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserChangePassword;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserForgetPassword;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
-import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
+import com.example.interfaces_integradora.Retrofit.ResponseGetUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
 
 import retrofit2.Call;
@@ -33,7 +33,7 @@ public class Peticiones {
         return apiRequest.createPlant("Bearer " + token, postUserPlant);
     }
 
-    public Call<ResponsePostUserMe> obtenerDatosUser(String token) {
+    public Call<ResponseGetUserMe> obtenerDatosUser(String token) {
         return apiRequest.meUser("Bearer " + token);
     }
 

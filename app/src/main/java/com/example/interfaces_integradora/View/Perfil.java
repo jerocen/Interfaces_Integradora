@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
-import com.example.interfaces_integradora.Retrofit.ResponsePostUserMe;
+import com.example.interfaces_integradora.Retrofit.ResponseGetUserMe;
 import com.example.interfaces_integradora.ViewModel.ViewModelMyPlant;
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,7 +30,7 @@ import retrofit2.Call;
 public class Perfil extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     SharedPreferences sharedPreferences;
-    TextView nombre, correo;
+    TextView nombre, correo,cant;
     String token;
     Button btnEdit;
     Peticiones peticiones = new Peticiones();
@@ -53,9 +53,11 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
         drawerLayout = findViewById(R.id.drawer_layout3);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        cant = findViewById(R.id.cant);
         View headerView = navigationView.getHeaderView(0);
         TextView nombrePerfilTextView = headerView.findViewById(R.id.nombreperfil);
         TextView correoTextView = headerView.findViewById(R.id.correo);
+
 
         viewModel = new ViewModelProvider(this).get(ViewModelMyPlant.class);
 
@@ -78,6 +80,7 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
                 correoTextView.setText(correo);
             }
         });
+
         viewModel.obtenerDatosUser(token);
 
         setSupportActionBar(toolbar);
@@ -101,19 +104,19 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(i);
         });
 
-        Call<ResponsePostUserMe> call = peticiones.obtenerDatosUser(token);
-        call.enqueue(new retrofit2.Callback<ResponsePostUserMe>() {
+        Call<ResponseGetUserMe> call = peticiones.obtenerDatosUser(token);
+        call.enqueue(new retrofit2.Callback<ResponseGetUserMe>() {
             @Override
-            public void onResponse(Call<ResponsePostUserMe> call, retrofit2.Response<ResponsePostUserMe> response) {
+            public void onResponse(Call<ResponseGetUserMe> call, retrofit2.Response<ResponseGetUserMe> response) {
                 if (response.isSuccessful()) {
                     nombre.setText(response.body().getName());
                     correo.setText(response.body().getEmail());
-
+                    cant.setText(response.body().getPlants());
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponsePostUserMe> call, Throwable t) {
+            public void onFailure(Call<ResponseGetUserMe> call, Throwable t) {
                Intent i = new Intent(Perfil.this, LogInView.class);
                startActivity(i);
                finish();

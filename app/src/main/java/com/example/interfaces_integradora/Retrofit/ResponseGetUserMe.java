@@ -1,6 +1,6 @@
 package com.example.interfaces_integradora.Retrofit;
 
-public class ResponsePostUserMe {
+public class ResponseGetUserMe {
     private String id;
     private String name;
     private String is_active;
@@ -10,6 +10,7 @@ public class ResponsePostUserMe {
     private String remember_token;
     private String created_at;
     private String updated_at;
+    private String plants;
 
     public String getId() {
         return id;
@@ -81,5 +82,12 @@ public class ResponsePostUserMe {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getPlants() {return plants;
+    }
+
+    public void setPlants(String plants) {
+        this.plants = plants;
     }
 }
