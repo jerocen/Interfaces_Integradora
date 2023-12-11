@@ -56,9 +56,10 @@ public class DetallePlanta extends AppCompatActivity {
             public void onResponse(Call<ResponseGetUserValuesPlant> call, Response<ResponseGetUserValuesPlant> response) {
                 if (response.isSuccessful()) {
                     ResponseGetUserValuesPlant responseBody = response.body();
-                    List<ResponseGetUserValuesPlant.data> dataList = responseBody.getData();
-                    for (ResponseGetUserValuesPlant.data data : dataList) {
-                        switch (data.getFeed_key()) {
+                    List<ResponseGetUserValuesPlant.Data> dataList = responseBody.getData();
+
+                    for (ResponseGetUserValuesPlant.Data data : dataList) {
+                        switch (data.getFeedkey()) {
                             case "humedad":
                                 Valorhumedad.setText(data.getValue());
                                 break;
@@ -82,17 +83,13 @@ public class DetallePlanta extends AppCompatActivity {
                                 break;
                         }
                     }
-                } else {
-                    Toast.makeText(DetallePlanta.this, "Error al obtener los datos", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseGetUserValuesPlant> call, Throwable t) {
-                Log.e("Error", t.getMessage());
-                Toast.makeText(DetallePlanta.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetallePlanta.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
