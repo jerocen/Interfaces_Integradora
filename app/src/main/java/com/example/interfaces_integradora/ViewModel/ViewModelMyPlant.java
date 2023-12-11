@@ -22,7 +22,7 @@ public class ViewModelMyPlant extends ViewModel {
     private Peticiones peticiones = new Peticiones();
     private MutableLiveData<String> nombrePerfil = new MutableLiveData<>();
     private MutableLiveData<String> correo = new MutableLiveData<>();
-    private MutableLiveData<List<ResponseGetUserPlant.Group>> itemPlants = new MutableLiveData<>();
+    private MutableLiveData<List<ResponseGetUserPlant.data>> itemPlants = new MutableLiveData<>();
     private MutableLiveData<String> toastMessage = new MutableLiveData<>();
 
     public LiveData<String> getToastMessage() {
@@ -37,7 +37,7 @@ public class ViewModelMyPlant extends ViewModel {
         return correo;
     }
 
-    public MutableLiveData<List<ResponseGetUserPlant.Group>> getItemPlants() {
+    public MutableLiveData<List<ResponseGetUserPlant.data>> getItemPlants() {
         return itemPlants;
     }
 
@@ -66,7 +66,7 @@ public class ViewModelMyPlant extends ViewModel {
             @Override
             public void onResponse(Call<ResponseGetUserPlant> call, Response<ResponseGetUserPlant> response) {
                 if (response.isSuccessful()) {
-                    itemPlants.setValue(response.body().getGroups());
+                    itemPlants.setValue(response.body().getData());
                 }
             }
 

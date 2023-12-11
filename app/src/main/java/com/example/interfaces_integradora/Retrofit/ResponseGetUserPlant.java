@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ResponseGetUserPlant {
     private String msg;
-    private List<Group> groups;
+    private List<data> data;
 
     public String getMsg() {
         return msg;
@@ -16,17 +16,37 @@ public class ResponseGetUserPlant {
         this.msg = msg;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public List<data> getData() {
+        return data;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setData(List<data> data) {
+        this.data = data;
     }
 
-    public class Group{
+
+    public class data{
+        private int id;
         private String name;
+
+        private int user_id;
         private String groupkey;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
+        }
 
         public String getName() {
             return name;

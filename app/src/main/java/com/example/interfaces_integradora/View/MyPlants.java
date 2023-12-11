@@ -53,7 +53,6 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
 
     SharedPreferences sharedPreferences;
-
     String token;
 
     FloatingActionButton fab;
@@ -145,9 +144,9 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
 
         RecyclerView recyclerView = findViewById(R.id.recyclerviewPlants);
 
-        /*viewModel.getItemPlants().observe(this, new Observer<List<ResponseGetUserPlant.Group>>() {
+        viewModel.getItemPlants().observe(this, new Observer<List<ResponseGetUserPlant.data>>() {
             @Override
-            public void onChanged(List<ResponseGetUserPlant.Group> groups) {
+            public void onChanged(List<ResponseGetUserPlant.data> groups) {
                 // Actualiza el adaptador de tu RecyclerView
                 PlantAdaptor adapter = new PlantAdaptor(groups);
                 recyclerView.setLayoutManager(new GridLayoutManager(MyPlants.this, 2));
@@ -156,15 +155,15 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         // Obtén los datos iniciales
-        viewModel.obtenerDatosPlant(token);*/
+        viewModel.obtenerDatosPlant(token);
     }
 
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer((GravityCompat.START));
-        }else{
+        } else {
             super.onBackPressed();
         }
     }

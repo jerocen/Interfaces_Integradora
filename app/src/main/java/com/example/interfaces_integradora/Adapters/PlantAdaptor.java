@@ -17,9 +17,9 @@ import java.util.List;
 
 public class PlantAdaptor extends RecyclerView.Adapter<PlantAdaptor.ViewHolder>{
 
-    List<ResponseGetUserPlant.Group> items;
+    List<ResponseGetUserPlant.data> items;
 
-    public PlantAdaptor(List<ResponseGetUserPlant.Group> items) {
+    public PlantAdaptor(List<ResponseGetUserPlant.data> items) {
         this.items = items;
     }
     @NonNull
@@ -31,7 +31,7 @@ public class PlantAdaptor extends RecyclerView.Adapter<PlantAdaptor.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull PlantAdaptor.ViewHolder holder, int position) {
-        ResponseGetUserPlant.Group plant = items.get(position);
+        ResponseGetUserPlant.data plant = items.get(position);
         holder.setData(plant);
     }
 
@@ -43,17 +43,16 @@ public class PlantAdaptor extends RecyclerView.Adapter<PlantAdaptor.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre;
         ShapeableImageView imageview;
-        ResponseGetUserPlant.Group pt;
+        ResponseGetUserPlant.data pt;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.plantName);
             imageview = itemView.findViewById(R.id.imagePlantView);
         }
 
-        public void setData(ResponseGetUserPlant.Group plant) {
+        public void setData(ResponseGetUserPlant.data plant) {
             pt = plant;
             nombre.setText(plant.getName());
-            //imageview.setImageResource(plant.getGroupkey());
         }
     }
 }
