@@ -109,7 +109,7 @@ public class Contact extends AppCompatActivity implements NavigationView.OnNavig
             Intent intent = new Intent(this, Contact.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_logout) {
-            Log.d("MyPlants", "Token: " + token);
+            Log.d("Contactanos", "Token: " + token);
             Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
             Peticiones.logoutUser(this, token, () -> {
                 Intent intent = new Intent(this, LogInView.class);
