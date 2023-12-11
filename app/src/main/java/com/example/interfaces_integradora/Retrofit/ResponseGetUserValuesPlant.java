@@ -5,7 +5,6 @@ import java.util.List;
 public class ResponseGetUserValuesPlant {
     private String msg;
     private List<Data> data;
-    // Getters y setters...
 
     public String getMsg() {
         return msg;

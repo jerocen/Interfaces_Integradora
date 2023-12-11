@@ -38,5 +38,7 @@ Call<ResponsePostUserPlant> createPlant(@Header("Authorization") String token, @
 @GET("/api/auth/all/feed")
 Call<ResponseGetUserValuesPlant> getValuesPlant(@Header("Authorization") String token);
 
+
+
 }
 
