@@ -34,6 +34,20 @@
                 android:background="@drawable/borde2"
                 />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:visibility="gone"
+                android:layout_width="250dp"
+                android:layout_height="350dp"
+                android:layout_marginTop="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animacion_regar" />
+
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="0dp"

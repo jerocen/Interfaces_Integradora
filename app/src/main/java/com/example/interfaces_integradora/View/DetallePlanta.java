@@ -3,10 +3,13 @@ package com.example.interfaces_integradora.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
@@ -22,6 +25,7 @@ import retrofit2.Response;
 
 public class DetallePlanta extends AppCompatActivity {
     TextView Valorhumedad;
+    LottieAnimationView animacion;
     TextView ValorTemperatura;
     TextView ValorSuelo;
     TextView ValorMovimiento;
@@ -51,6 +55,7 @@ public class DetallePlanta extends AppCompatActivity {
         ValorAgua = findViewById(R.id.valor6);
         ValorLuz = findViewById(R.id.valor7);
         fab = findViewById(R.id.fab);
+        animacion= findViewById(R.id.animation_view);
 
         Call<ResponseGetUserValuesPlant> call = Peticiones.obtenerDatosValuesPlant(token);
         call.enqueue(new Callback<ResponseGetUserValuesPlant>() {
@@ -100,7 +105,21 @@ public class DetallePlanta extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponsePostUserBoton> call, Response<ResponsePostUserBoton> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(DetallePlanta.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                        CountDownTimer s = new CountDownTimer(30000, 1000) {
+                            @Override
+                            public void onTick(long l) {
+                                animacion.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                animacion.setVisibility(View.GONE);
+                                Toast.makeText(DetallePlanta.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                            }
+                        };
+                        s.start();
+
+
                     }
                 }
 
