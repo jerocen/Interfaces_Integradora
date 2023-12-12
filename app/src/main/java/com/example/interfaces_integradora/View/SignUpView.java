@@ -50,11 +50,7 @@ public class SignUpView extends AppCompatActivity
                 String userPassword = password.getText().toString();
                 String userPasswordConfirm = passwordConfirm.getText().toString();
 
-                if (userPassword.equals(userPasswordConfirm)) {
-                    viewModel.registerUser(new PostUserRegister(name, userEmail, userPassword, userPasswordConfirm));
-                } else {
-                    Toast.makeText(SignUpView.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                }
+                viewModel.registerUser(new PostUserRegister(name, userEmail, userPassword, userPasswordConfirm));
             }
         });
 
