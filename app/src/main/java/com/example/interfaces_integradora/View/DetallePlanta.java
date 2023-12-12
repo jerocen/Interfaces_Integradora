@@ -66,27 +66,36 @@ public class DetallePlanta extends AppCompatActivity {
             @Override
             public void onChanged(List<ResponseGetUserValuesPlant.Data> data) {
                 for (ResponseGetUserValuesPlant.Data dataItem : data) {
+                    String value = dataItem.getValue();
                     switch (dataItem.getFeedkey()) {
                         case "humedad":
-                            Valorhumedad.setText(dataItem.getValue());
+                            Valorhumedad.setText(value + "%");
                             break;
                         case "temperatura":
-                            ValorTemperatura.setText(dataItem.getValue());
+                            ValorTemperatura.setText(value + "°F");
                             break;
                         case "suelo":
-                            ValorSuelo.setText(dataItem.getValue());
+                            ValorSuelo.setText(value + "% ");
                             break;
                         case "movimiento":
-                            ValorMovimiento.setText(dataItem.getValue());
+                            if ("1".equals(value)) {
+                                ValorMovimiento.setText("Sin movimiento");
+                            } else {
+                                ValorMovimiento.setText("Con movimiento");
+                            }
                             break;
                         case "lluvia":
-                            ValorLluvia.setText(dataItem.getValue());
+                            if ("1".equals(value)) {
+                                ValorLluvia.setText("Sin lluvia");
+                            } else {
+                                ValorLluvia.setText("Lloviendo");
+                            }
                             break;
                         case "agua":
-                            ValorAgua.setText(dataItem.getValue());
+                            ValorAgua.setText(value + "%");
                             break;
                         case "luz":
-                            ValorLuz.setText(dataItem.getValue());
+                            ValorLuz.setText(value + "%");
                             break;
                     }
                 }
