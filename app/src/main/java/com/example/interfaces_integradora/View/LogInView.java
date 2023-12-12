@@ -51,8 +51,7 @@ public class LogInView extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            String mensaje = "No hay sesion iniciada";
-            Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+
         }
 
         ViewModelLogin viewModel = new ViewModelProvider(this).get(ViewModelLogin.class);

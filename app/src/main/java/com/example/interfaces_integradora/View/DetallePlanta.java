@@ -1,6 +1,8 @@
 package com.example.interfaces_integradora.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
@@ -14,6 +16,7 @@ import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserBoton;
+import com.example.interfaces_integradora.ViewModel.ViewModelDetailPlant;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -38,7 +41,8 @@ public class DetallePlanta extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
-    Peticiones Peticiones = new Peticiones();
+    ViewModelDetailPlant viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,78 +61,54 @@ public class DetallePlanta extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         animacion= findViewById(R.id.animation_view);
 
-        Call<ResponseGetUserValuesPlant> call = Peticiones.obtenerDatosValuesPlant(token);
-        call.enqueue(new Callback<ResponseGetUserValuesPlant>() {
+        viewModel = new ViewModelProvider(this).get(ViewModelDetailPlant.class);
+        viewModel.getPlantData().observe(this, new Observer<List<ResponseGetUserValuesPlant.Data>>() {
             @Override
-            public void onResponse(Call<ResponseGetUserValuesPlant> call, Response<ResponseGetUserValuesPlant> response) {
-                if (response.isSuccessful()) {
-                    ResponseGetUserValuesPlant responseBody = response.body();
-                    List<ResponseGetUserValuesPlant.Data> dataList = responseBody.getData();
-
-                    for (ResponseGetUserValuesPlant.Data data : dataList) {
-                        switch (data.getFeedkey()) {
-                            case "humedad":
-                                Valorhumedad.setText(data.getValue());
-                                break;
-                            case "temperatura":
-                                ValorTemperatura.setText(data.getValue());
-                                break;
-                            case "suelo":
-                                ValorSuelo.setText(data.getValue());
-                                break;
-                            case "movimiento":
-                                ValorMovimiento.setText(data.getValue());
-                                break;
-                            case "lluvia":
-                                ValorLluvia.setText(data.getValue());
-                                break;
-                            case "agua":
-                                ValorAgua.setText(data.getValue());
-                                break;
-                            case "luz":
-                                ValorLuz.setText(data.getValue());
-                                break;
-                        }
+            public void onChanged(List<ResponseGetUserValuesPlant.Data> data) {
+                for (ResponseGetUserValuesPlant.Data dataItem : data) {
+                    switch (dataItem.getFeedkey()) {
+                        case "humedad":
+                            Valorhumedad.setText(dataItem.getValue());
+                            break;
+                        case "temperatura":
+                            ValorTemperatura.setText(dataItem.getValue());
+                            break;
+                        case "suelo":
+                            ValorSuelo.setText(dataItem.getValue());
+                            break;
+                        case "movimiento":
+                            ValorMovimiento.setText(dataItem.getValue());
+                            break;
+                        case "lluvia":
+                            ValorLluvia.setText(dataItem.getValue());
+                            break;
+                        case "agua":
+                            ValorAgua.setText(dataItem.getValue());
+                            break;
+                        case "luz":
+                            ValorLuz.setText(dataItem.getValue());
+                            break;
                     }
                 }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseGetUserValuesPlant> call, Throwable t) {
-                Toast.makeText(DetallePlanta.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        viewModel.loadPlantData(token);
 
         fab.setOnClickListener(view -> {
-            Call<ResponsePostUserBoton> call2 = Peticiones.sendBoton(token);
-            call2.enqueue(new Callback<ResponsePostUserBoton>() {
+            viewModel.sendButton(token);
+            CountDownTimer s = new CountDownTimer(30000, 1000) {
                 @Override
-                public void onResponse(Call<ResponsePostUserBoton> call, Response<ResponsePostUserBoton> response) {
-                    if (response.isSuccessful()) {
-                        CountDownTimer s = new CountDownTimer(30000, 1000) {
-                            @Override
-                            public void onTick(long l) {
-                                animacion.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                animacion.setVisibility(View.GONE);
-                                Toast.makeText(DetallePlanta.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
-                            }
-                        };
-                        s.start();
-
-
-                    }
+                public void onTick(long l) {
+                    animacion.setVisibility(View.VISIBLE);
                 }
 
                 @Override
-                public void onFailure(Call<ResponsePostUserBoton> call, Throwable t) {
-                    Toast.makeText(DetallePlanta.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                public void onFinish() {
+                    animacion.setVisibility(View.GONE);
+                    Toast.makeText(DetallePlanta.this, "Botón enviado", Toast.LENGTH_SHORT).show();
                 }
-            });
-
+            };
+            s.start();
         });
     }
 }
