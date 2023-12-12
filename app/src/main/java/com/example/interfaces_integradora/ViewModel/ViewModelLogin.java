@@ -54,15 +54,15 @@ public class ViewModelLogin extends ViewModel {
             @Override
             public void onResponse(Call<ResponsePostUserForgetPassword> call, Response<ResponsePostUserForgetPassword> response) {
                 if (response.isSuccessful()) {
-                    toastMessage.setValue(response.body().getMsg());
+                    toastMessage.postValue(response.body().getMsg());
                 } else {
-                    toastMessage.setValue("Error al enviar el correo");
+                    toastMessage.postValue("Error al enviar el correo");
                 }
             }
 
             @Override
             public void onFailure(Call<ResponsePostUserForgetPassword> call, Throwable t) {
-                toastMessage.setValue("Error de conexión: " + t.getMessage());
+                toastMessage.postValue("Error de conexión: " + t.getMessage());
             }
         });
     }
@@ -74,9 +74,8 @@ public class ViewModelLogin extends ViewModel {
                 if (response.isSuccessful()) {
                     loginresult.postValue(response.body());
                 } else {
-                    // Aquí manejas los códigos de estado HTTP
                     if (response.code() == 401) {
-                        toastMessage.postValue("Unauthorized");
+                        toastMessage.postValue("Credenciales incorrectas");
                     } else if (response.code() == 403) {
                         toastMessage.postValue("Cuenta no activa");
                     } else {

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Handler;
 
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Models.PostUserLogin;
@@ -69,8 +70,18 @@ public class LogInView extends AppCompatActivity {
 
         viewModel.getToastMessage().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String errorMessage) {
-                tvErrorMessage.setText(errorMessage);
+            public void onChanged(String toastMessage) {
+                if (toastMessage.contains("Se envio un correo a")) {
+                    Toast.makeText(LogInView.this, toastMessage, Toast.LENGTH_SHORT).show();
+                } else {
+                    tvErrorMessage.setText(toastMessage);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvErrorMessage.setText("");
+                        }
+                    }, 3000);
+                }
             }
         });
 
@@ -98,13 +109,6 @@ public class LogInView extends AppCompatActivity {
             @Override
             public void onChanged(String error) {
                 Toast.makeText(LogInView.this, "Error de conexión: " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        viewModel.getToastMessage().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String toastMessage) {
-                Toast.makeText(LogInView.this, toastMessage, Toast.LENGTH_SHORT).show();
             }
         });
 
