@@ -69,6 +69,16 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tvErrorMessage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            app:layout_constraintTop_toBottomOf="@id/btnConfirmarCambio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
+
 
         <Button
             android:id="@+id/btnConfirmarCambio"
