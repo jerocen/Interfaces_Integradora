@@ -174,15 +174,17 @@ public class NotificationService extends Service{
                 managerCompat.notify(1, builder.build());
             }
 
-            private void setPendingIntent(Class<?> cls){
-                Intent intent = new Intent(this, cls);
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-                stackBuilder.addParentStack(cls);
-                stackBuilder.addNextIntent(intent);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-                } else {
-                    pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
-                }
+    private void setPendingIntent(Class<?> cls){
+        Intent intent = new Intent(this, cls);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(cls);
+        stackBuilder.addNextIntent(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+            } else {
+                pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
             }
+        }
+    }
         }
