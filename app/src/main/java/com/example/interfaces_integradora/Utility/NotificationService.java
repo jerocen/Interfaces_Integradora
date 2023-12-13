@@ -121,21 +121,21 @@ public class NotificationService extends Service{
         return START_STICKY;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+            @Override
+            public void onCreate() {
+                super.onCreate();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel serviceChannel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Foreground Service Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel serviceChannel = new NotificationChannel(
+                            CHANNEL_ID,
+                            "Foreground Service Channel",
+                            NotificationManager.IMPORTANCE_DEFAULT
+                    );
 
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(serviceChannel);
-        }
-    }
+                    NotificationManager manager = getSystemService(NotificationManager.class);
+                    manager.createNotificationChannel(serviceChannel);
+                }
+            }
 
             private void showNotification(String title, String content) {
                 if (checkNotificationPermission()) {
@@ -151,17 +151,17 @@ public class NotificationService extends Service{
                 return true;
             }
 
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel serviceChannel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Foreground Service Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(serviceChannel);
-        }
-    }
+            private void createNotificationChannel() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel serviceChannel = new NotificationChannel(
+                            CHANNEL_ID,
+                            "Foreground Service Channel",
+                            NotificationManager.IMPORTANCE_DEFAULT
+                    );
+                    NotificationManager manager = getSystemService(NotificationManager.class);
+                    manager.createNotificationChannel(serviceChannel);
+                }
+            }
 
             private void showNewNotification(String title, String content) {
                 setPendingIntent(DetallePlanta.class);
@@ -179,26 +179,26 @@ public class NotificationService extends Service{
                 managerCompat.notify(1, builder.build());
             }
 
-    private Notification getNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.icon1)
-                .setContentTitle("My Notification")
-                .setContentText("Service is running...")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        return builder.build();
-    }
-
-    private void setPendingIntent(Class<?> cls){
-        Intent intent = new Intent(this, cls);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(cls);
-        stackBuilder.addNextIntent(intent);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-            } else {
-                pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+            private Notification getNotification() {
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.icon1)
+                        .setContentTitle("My Notification")
+                        .setContentText("Service is running...")
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                return builder.build();
             }
-        }
-    }
+
+            private void setPendingIntent(Class<?> cls){
+                Intent intent = new Intent(this, cls);
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+                stackBuilder.addParentStack(cls);
+                stackBuilder.addNextIntent(intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                    } else {
+                        pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+                    }
+                }
+            }
         }
