@@ -46,6 +46,8 @@ public class NotificationService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        createNotificationChannel();
+        startForeground(1, getNotification());
 
         if (intent != null) {
             token = intent.getStringExtra("token");
@@ -149,14 +151,17 @@ public class NotificationService extends Service{
                 return true;
             }
 
-            private void createNotificationChannel() {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                            "NEW", NotificationManager.IMPORTANCE_DEFAULT);
-                    NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    manager.createNotificationChannel(channel);
-                }
-            }
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Foreground Service Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(serviceChannel);
+        }
+    }
 
             private void showNewNotification(String title, String content) {
                 setPendingIntent(DetallePlanta.class);
@@ -173,6 +178,15 @@ public class NotificationService extends Service{
                 }
                 managerCompat.notify(1, builder.build());
             }
+
+    private Notification getNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.icon1)
+                .setContentTitle("My Notification")
+                .setContentText("Service is running...")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        return builder.build();
+    }
 
     private void setPendingIntent(Class<?> cls){
         Intent intent = new Intent(this, cls);
