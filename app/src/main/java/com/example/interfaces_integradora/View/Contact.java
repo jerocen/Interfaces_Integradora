@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
@@ -55,6 +57,26 @@ public class Contact extends AppCompatActivity implements NavigationView.OnNavig
         View headerView = navigationView.getHeaderView(0);
         TextView nombrePerfilTextView = headerView.findViewById(R.id.nombreperfil);
         TextView correoTextView = headerView.findViewById(R.id.correo);
+        ConstraintLayout telefonoLayout = findViewById(R.id.telefono);
+        ConstraintLayout correoLayout = findViewById(R.id.correo);
+
+        telefonoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:8711765476"));
+                startActivity(callIntent);
+            }
+        });
+
+        correoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","vafjcompany@gmail.com", null));
+                startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
+            }
+        });
+
 
         viewModel = new ViewModelProvider(this).get(ViewModelMyPlant.class);
 

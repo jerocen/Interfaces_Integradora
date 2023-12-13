@@ -182,8 +182,8 @@ public class NotificationService extends Service{
             private Notification getNotification() {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                         .setSmallIcon(R.drawable.icon1)
-                        .setContentTitle("My Notification")
-                        .setContentText("Service is running...")
+                        .setContentTitle("Aplicacion en ejecucion")
+                        .setContentText("Tus plantas estan siendo monitoreadas")
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 return builder.build();
             }
