@@ -162,7 +162,7 @@ public class NotificationService extends Service{
                 setPendingIntent(DetallePlanta.class);
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),
                         CHANNEL_ID)
-                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setSmallIcon(R.drawable.icon1)
                         .setContentTitle(title)
                         .setContentText(content)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
