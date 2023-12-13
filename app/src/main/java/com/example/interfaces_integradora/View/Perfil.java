@@ -58,31 +58,6 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
         TextView nombrePerfilTextView = headerView.findViewById(R.id.nombreperfil);
         TextView correoTextView = headerView.findViewById(R.id.correo);
 
-
-        viewModel = new ViewModelProvider(this).get(ViewModelMyPlant.class);
-
-        viewModel.getNombrePerfil().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String nombrePerfil) {
-                nombrePerfilTextView.setText(nombrePerfil);
-            }
-        });
-
-        viewModel.getToastMessage().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String toastMessage) {
-                Toast.makeText(Perfil.this, toastMessage, Toast.LENGTH_SHORT).show();
-            }
-        });
-        viewModel.getCorreo().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String correo) {
-                correoTextView.setText(correo);
-            }
-        });
-
-        viewModel.obtenerDatosUser(token);
-
         setSupportActionBar(toolbar);
 
         navigationView.bringToFront();
@@ -112,14 +87,19 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
                     nombre.setText(response.body().getName());
                     correo.setText(response.body().getEmail());
                     cant.setText(response.body().getPlants());
+
+                    nombrePerfilTextView.setText(response.body().getName());
+                    correoTextView.setText(response.body().getEmail());
+
+                    Toast.makeText(Perfil.this, "Datos cargados con éxito", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseGetUserMe> call, Throwable t) {
-               Intent i = new Intent(Perfil.this, LogInView.class);
-               startActivity(i);
-               finish();
+                Intent i = new Intent(Perfil.this, LogInView.class);
+                startActivity(i);
+                finish();
             }
         });
     }
