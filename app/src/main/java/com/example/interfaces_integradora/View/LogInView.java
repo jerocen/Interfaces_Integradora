@@ -4,9 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +28,8 @@ import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogin;
 import com.example.interfaces_integradora.ViewModel.ViewModelLogin;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.List;
+
 public class LogInView extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
@@ -35,6 +43,23 @@ public class LogInView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_view);
+
+        if (!areNotificationsEnabled()) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Permisos de notificación")
+                    .setMessage("¿Quieres activar las notificaciones?")
+                    .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Redirige al usuario a la configuración de la aplicación
+                            Intent intent = new Intent();
+                            intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+                            intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }
 
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         myEdit = sharedPreferences.edit();
@@ -146,6 +171,22 @@ public class LogInView extends AppCompatActivity {
             bottomSheetDialog.setContentView(sheetView);
             bottomSheetDialog.show();
         });
+    }
+
+    private boolean areNotificationsEnabled() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            if (!manager.areNotificationsEnabled()) {
+                return false;
+            }
+            List<NotificationChannel> channels = manager.getNotificationChannels();
+            for (NotificationChannel channel : channels) {
+                if (channel.getImportance() == NotificationManager.IMPORTANCE_NONE) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public boolean revisarSesion() {
