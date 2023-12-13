@@ -11,11 +11,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PlantRepository {
-    private Peticiones peticiones;
-
-    public PlantRepository() {
-        peticiones = new Peticiones();
-    }
+    Peticiones peticiones = new Peticiones();
 
     public void getPlantData(String token, DataCallback callback) {
         Call<ResponseGetUserValuesPlant> call = peticiones.obtenerDatosValuesPlant(token);

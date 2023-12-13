@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.interfaces_integradora.Models.Peticiones;
+import com.example.interfaces_integradora.Repository.MyPlantRepository;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserPlant;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
@@ -16,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewModelMyPlant extends ViewModel {
-    private Peticiones peticiones = new Peticiones();
+    private MyPlantRepository myPlantRepository = new MyPlantRepository();
     private MutableLiveData<String> nombrePerfil = new MutableLiveData<>();
     private MutableLiveData<String> correo = new MutableLiveData<>();
     private MutableLiveData<List<ResponseGetUserPlant.data>> itemPlants = new MutableLiveData<>();
@@ -39,59 +40,46 @@ public class ViewModelMyPlant extends ViewModel {
     }
 
     public void obtenerDatosUser(String token) {
-        Call<ResponseGetUserMe> call = peticiones.obtenerDatosUser(token);
-        call.enqueue(new Callback<ResponseGetUserMe>() {
+        myPlantRepository.obtenerDatosUser(token, new MyPlantRepository.UserCallback() {
             @Override
-            public void onResponse(Call<ResponseGetUserMe> call, Response<ResponseGetUserMe> response) {
-                if (response.isSuccessful()) {
-                    nombrePerfil.setValue(response.body().getName());
-                    correo.setValue(response.body().getEmail());
-                }
+            public void onSuccess(ResponseGetUserMe data) {
+                nombrePerfil.setValue(data.getName());
+                correo.setValue(data.getEmail());
             }
 
             @Override
-            public void onFailure(Call<ResponseGetUserMe> call, Throwable t) {
-
+            public void onError(Throwable t) {
+                // Manejar error
             }
         });
     }
 
-
     public void obtenerDatosPlant(String token) {
-        Call<ResponseGetUserPlant> call = peticiones.obtenerDatosPlant(token);
-        call.enqueue(new Callback<ResponseGetUserPlant>() {
+        myPlantRepository.obtenerDatosPlant(token, new MyPlantRepository.PlantCallback() {
             @Override
-            public void onResponse(Call<ResponseGetUserPlant> call, Response<ResponseGetUserPlant> response) {
-                if (response.isSuccessful()) {
-                    itemPlants.setValue(response.body().getData());
-                }
+            public void onSuccess(ResponseGetUserPlant data) {
+                itemPlants.setValue(data.getData());
             }
 
             @Override
-            public void onFailure(Call<ResponseGetUserPlant> call, Throwable t) {
-
+            public void onError(Throwable t) {
+                // Manejar error
             }
         });
     }
 
     public void agregarPlanta(String token, String nombrePlanta) {
-        Call<ResponsePostUserPlant> call = peticiones.createplant(token, nombrePlanta);
-        call.enqueue(new Callback<ResponsePostUserPlant>() {
+        myPlantRepository.agregarPlanta(token, nombrePlanta, new MyPlantRepository.AddPlantCallback() {
             @Override
-            public void onResponse(Call<ResponsePostUserPlant> call, Response<ResponsePostUserPlant> response) {
-                if (response.isSuccessful()) {
-                    obtenerDatosPlant(token);
-                    toastMessage.setValue("Planta agregada exitosamente");
-
-                }
+            public void onSuccess(ResponsePostUserPlant data) {
+                obtenerDatosPlant(token);
+                toastMessage.setValue("Planta agregada exitosamente");
             }
 
             @Override
-            public void onFailure(Call<ResponsePostUserPlant> call, Throwable t) {
+            public void onError(Throwable t) {
                 toastMessage.setValue("Error al agregar planta");
             }
         });
     }
-
 }
-
