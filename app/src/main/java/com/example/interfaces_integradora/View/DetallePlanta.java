@@ -1,23 +1,26 @@
 package com.example.interfaces_integradora.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.interfaces_integradora.Utility.NotificationService;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
+import com.example.interfaces_integradora.Utility.NetworkChangeListener;
+import com.example.interfaces_integradora.Utility.NotificationService;
 import com.example.interfaces_integradora.ViewModel.ViewModelDetailPlant;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -44,6 +47,7 @@ public class DetallePlanta extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +153,20 @@ public class DetallePlanta extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onStart() {
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
+
 
     @Override
     protected void onPause() {

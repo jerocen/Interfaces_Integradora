@@ -1,17 +1,20 @@
 package com.example.interfaces_integradora.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserChangePassword;
+import com.example.interfaces_integradora.Utility.NetworkChangeListener;
 
 import org.json.JSONObject;
 
@@ -28,6 +31,7 @@ public class EditProfileInfo extends AppCompatActivity {
 
     TextView tvErrorMessage2;
     Peticiones peticiones = new Peticiones();
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,4 +84,18 @@ public class EditProfileInfo extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onStart() {
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
+
 }

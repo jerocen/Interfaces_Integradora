@@ -1,7 +1,9 @@
 package com.example.interfaces_integradora.View;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserMe;
+import com.example.interfaces_integradora.Utility.NetworkChangeListener;
 import com.example.interfaces_integradora.ViewModel.ViewModelPerfil;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,6 +40,7 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
     Toolbar toolbar;
     ViewModelPerfil perfilViewModel;
 
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,4 +139,17 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+    @Override
+    protected void onStart() {
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
+
 }
