@@ -46,13 +46,6 @@ public class NotificationService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Servicio en ejecución")
-                .setSmallIcon(R.drawable.icon1)
-                .build();
-
-        // Inicia el servicio en primer plano
-        startForeground(1, notification);
 
         if (intent != null) {
             token = intent.getStringExtra("token");
@@ -146,8 +139,6 @@ public class NotificationService extends Service{
                 if (checkNotificationPermission()) {
                     createNotificationChannel();
                     showNewNotification(title, content);
-                } else {
-                    Toast.makeText(this, "Permiso de notificación no concedido", Toast.LENGTH_SHORT).show();
                 }
             }
 
