@@ -1,4 +1,4 @@
-package com.example.interfaces_integradora;
+package com.example.interfaces_integradora.Utility;
 
 import android.Manifest;
 import android.app.Notification;
@@ -25,6 +25,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserValuesPlant;
 import com.example.interfaces_integradora.View.DetallePlanta;
 import com.example.interfaces_integradora.ViewModel.ViewModelDetailPlant;

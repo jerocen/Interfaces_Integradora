@@ -9,9 +9,8 @@ import android.os.CountDownTimer;
 import android.view.View;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.interfaces_integradora.NotificationService;
+import com.example.interfaces_integradora.Utility.NotificationService;
 import com.example.interfaces_integradora.R;
-import com.example.interfaces_integradora.View.LogInView;
 
 public class MainActivity extends AppCompatActivity {
 

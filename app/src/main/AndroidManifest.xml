@@ -57,7 +57,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".NotificationService" />
+        <service android:name=".Utility.NotificationService" />
     </application>
 
 </manifest>
