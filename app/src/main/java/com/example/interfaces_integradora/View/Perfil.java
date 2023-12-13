@@ -1,14 +1,5 @@
 package com.example.interfaces_integradora.View;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,13 +10,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.interfaces_integradora.Models.Peticiones;
 import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserMe;
-import com.example.interfaces_integradora.ViewModel.ViewModelMyPlant;
+import com.example.interfaces_integradora.ViewModel.ViewModelPerfil;
 import com.google.android.material.navigation.NavigationView;
-
-import retrofit2.Call;
 
 public class Perfil extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -37,16 +35,12 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-
-    ViewModelMyPlant viewModel;
+    ViewModelPerfil perfilViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
-
-
-
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
 
@@ -57,6 +51,28 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
         View headerView = navigationView.getHeaderView(0);
         TextView nombrePerfilTextView = headerView.findViewById(R.id.nombreperfil);
         TextView correoTextView = headerView.findViewById(R.id.correo);
+
+        perfilViewModel = new ViewModelProvider(this).get(ViewModelPerfil.class);
+        perfilViewModel.getUserData().observe(this, new Observer<ResponseGetUserMe>() {
+            @Override
+            public void onChanged(ResponseGetUserMe responseGetUserMe) {
+                nombre.setText(responseGetUserMe.getName());
+                correo.setText(responseGetUserMe.getEmail());
+                cant.setText(responseGetUserMe.getPlants());
+
+                nombrePerfilTextView.setText(responseGetUserMe.getName());
+                correoTextView.setText(responseGetUserMe.getEmail());
+            }
+        });
+
+        perfilViewModel.getError().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                // Manejar el error aquí
+            }
+        });
+
+        perfilViewModel.obtenerDatosUser(token);
 
         setSupportActionBar(toolbar);
 
@@ -79,29 +95,7 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(i);
         });
 
-        Call<ResponseGetUserMe> call = peticiones.obtenerDatosUser(token);
-        call.enqueue(new retrofit2.Callback<ResponseGetUserMe>() {
-            @Override
-            public void onResponse(Call<ResponseGetUserMe> call, retrofit2.Response<ResponseGetUserMe> response) {
-                if (response.isSuccessful()) {
-                    nombre.setText(response.body().getName());
-                    correo.setText(response.body().getEmail());
-                    cant.setText(response.body().getPlants());
 
-                    nombrePerfilTextView.setText(response.body().getName());
-                    correoTextView.setText(response.body().getEmail());
-
-                    Toast.makeText(Perfil.this, "Datos cargados con éxito", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseGetUserMe> call, Throwable t) {
-                Intent i = new Intent(Perfil.this, LogInView.class);
-                startActivity(i);
-                finish();
-            }
-        });
     }
 
     @Override
