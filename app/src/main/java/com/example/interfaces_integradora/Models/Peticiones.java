@@ -17,6 +17,7 @@ import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogin;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogout;
 import com.example.interfaces_integradora.Retrofit.ResponseGetUserMe;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserPlant;
+import com.example.interfaces_integradora.Retrofit.ResponsePostUserRegister;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +34,10 @@ public class Peticiones {
         PostUserPlant postUserPlant = new PostUserPlant(nombrePlanta);
 
         return apiRequest.createPlant("Bearer " + token, postUserPlant);
+    }
+
+    public Call<ResponsePostUserRegister> registerUser(PostUserRegister postUserRegister) {
+        return apiRequest.registerUser(postUserRegister);
     }
 
     public Call<ResponsePostUserLogin> loginUser(PostUserLogin postUserLogin) {
