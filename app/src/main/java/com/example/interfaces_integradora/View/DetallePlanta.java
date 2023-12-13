@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -29,20 +31,22 @@ import retrofit2.Response;
 public class DetallePlanta extends AppCompatActivity {
     TextView Valorhumedad;
     LottieAnimationView animacion;
+    LottieAnimationView animacion2;
     TextView ValorTemperatura;
     TextView ValorSuelo;
     TextView ValorMovimiento;
     TextView ValorLluvia;
     TextView ValorAgua;
     TextView ValorLuz;
+    ImageView mov;
     String token;
+    ViewModelDetailPlant viewModel;
+    Handler handler;
+    Runnable runnableCode;
 
     FloatingActionButton fab;
 
     SharedPreferences sharedPreferences;
-
-    ViewModelDetailPlant viewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +63,9 @@ public class DetallePlanta extends AppCompatActivity {
         ValorAgua = findViewById(R.id.valor6);
         ValorLuz = findViewById(R.id.valor7);
         fab = findViewById(R.id.fab);
+        mov = findViewById(R.id.mov);
         animacion= findViewById(R.id.animation_view);
+        animacion2= findViewById(R.id.animation_move);
 
         viewModel = new ViewModelProvider(this).get(ViewModelDetailPlant.class);
         viewModel.getPlantData().observe(this, new Observer<List<ResponseGetUserValuesPlant.Data>>() {
@@ -80,8 +86,12 @@ public class DetallePlanta extends AppCompatActivity {
                         case "movimiento":
                             if ("1".equals(value)) {
                                 ValorMovimiento.setText("Sin movimiento");
+                                mov.setVisibility(View.VISIBLE);
+                                animacion2.setVisibility(View.GONE);
                             } else {
                                 ValorMovimiento.setText("Con movimiento");
+                                mov.setVisibility(View.GONE);
+                                animacion2.setVisibility(View.VISIBLE);
                             }
                             break;
                         case "lluvia":
@@ -103,8 +113,20 @@ public class DetallePlanta extends AppCompatActivity {
         });
         viewModel.loadPlantData(token);
 
+        handler = new Handler();
+        runnableCode = new Runnable() {
+            @Override
+            public void run() {
+                viewModel.loadPlantData(token);
+                handler.postDelayed(this, 60000);
+            }
+        };
+        handler.post(runnableCode);
+
         fab.setOnClickListener(view -> {
             viewModel.sendButton(token);
+            viewModel.loadPlantData(token);
+            Toast.makeText(this, "Enviando señal", Toast.LENGTH_SHORT).show();
             CountDownTimer s = new CountDownTimer(30000, 1000) {
                 @Override
                 public void onTick(long l) {
@@ -114,10 +136,27 @@ public class DetallePlanta extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     animacion.setVisibility(View.GONE);
-                    Toast.makeText(DetallePlanta.this, "Botón enviado", Toast.LENGTH_SHORT).show();
+                    viewModel.getMessage().observe(DetallePlanta.this, new Observer<String>() {
+                        @Override
+                        public void onChanged(String s) {
+                            Toast.makeText(DetallePlanta.this, s, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             };
             s.start();
         });
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnableCode);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.post(runnableCode);
     }
 }

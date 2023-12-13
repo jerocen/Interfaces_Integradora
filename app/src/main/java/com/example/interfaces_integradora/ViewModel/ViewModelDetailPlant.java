@@ -12,12 +12,15 @@ import java.util.List;
 public class ViewModelDetailPlant extends ViewModel {
     private PlantRepository repository;
     private MutableLiveData<List<ResponseGetUserValuesPlant.Data>> plantData;
-
+    private MutableLiveData<String> Message;
     public ViewModelDetailPlant() {
         repository = new PlantRepository();
         plantData = new MutableLiveData<>();
+        Message = new MutableLiveData<>();
     }
-
+    public LiveData<String> getMessage() {
+        return Message;
+    }
     public LiveData<List<ResponseGetUserValuesPlant.Data>> getPlantData() {
         return plantData;
     }
@@ -40,12 +43,12 @@ public class ViewModelDetailPlant extends ViewModel {
         repository.sendButton(token, new PlantRepository.ButtonCallback() {
             @Override
             public void onSuccess(String message) {
-                // Maneja la respuesta exitosa
+                Message.setValue(message);
             }
 
             @Override
             public void onError(Throwable t) {
-                // Maneja el error
+                Message.setValue("Error");
             }
         });
     }
