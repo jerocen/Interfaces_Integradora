@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.interfaces_integradora.Models.Peticiones;
+import com.example.interfaces_integradora.Repository.LoginRepository;
 import com.example.interfaces_integradora.Retrofit.ApiRequest;
 import com.example.interfaces_integradora.Models.PostUserLogin;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserForgetPassword;
@@ -16,16 +17,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ViewModelLogin extends ViewModel {
-    Peticiones Peticiones = new Peticiones();
+    private LoginRepository loginRepository = new LoginRepository();
     private MutableLiveData<ResponsePostUserLogin> loginresult = new MutableLiveData<>();
     private MutableLiveData<String> toastMessage = new MutableLiveData<>();
     private MutableLiveData<String> error = new MutableLiveData<>();
+
     public MutableLiveData<String> getToastMessage() {
         return toastMessage;
-    }
-
-    public void setToastMessage(MutableLiveData<String> toastMessage) {
-        this.toastMessage = toastMessage;
     }
 
     public MutableLiveData<ResponsePostUserLogin> getLoginresult() {
@@ -36,57 +34,30 @@ public class ViewModelLogin extends ViewModel {
         return error;
     }
 
-    private final ApiRequest repository;
-
-    public ViewModelLogin() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://52.0.199.187")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        repository = retrofit.create(ApiRequest.class);
-    }
-
     public void forgetPassword(String email){
-        Call<ResponsePostUserForgetPassword> call = Peticiones.forgetPassword(email);
-
-        call.enqueue(new Callback<ResponsePostUserForgetPassword>() {
+        loginRepository.forgetPassword(email, new LoginRepository.ForgetPasswordCallback() {
             @Override
-            public void onResponse(Call<ResponsePostUserForgetPassword> call, Response<ResponsePostUserForgetPassword> response) {
-                if (response.isSuccessful()) {
-                    toastMessage.postValue(response.body().getMsg());
-                } else {
-                    toastMessage.postValue("Error al enviar el correo");
-                }
+            public void onSuccess(ResponsePostUserForgetPassword data) {
+                toastMessage.postValue(data.getMsg());
             }
 
             @Override
-            public void onFailure(Call<ResponsePostUserForgetPassword> call, Throwable t) {
+            public void onError(Throwable t) {
                 toastMessage.postValue("Error de conexión: " + t.getMessage());
             }
         });
     }
 
     public void loginUser(PostUserLogin postUserLogin) {
-        repository.loginUser(postUserLogin).enqueue(new Callback<ResponsePostUserLogin>() {
+        loginRepository.loginUser(postUserLogin, new LoginRepository.LoginCallback() {
             @Override
-            public void onResponse(Call<ResponsePostUserLogin> call, Response<ResponsePostUserLogin> response) {
-                if (response.isSuccessful()) {
-                    loginresult.postValue(response.body());
-                } else {
-                    if (response.code() == 401) {
-                        toastMessage.postValue("Credenciales incorrectas");
-                    } else if (response.code() == 403) {
-                        toastMessage.postValue("Cuenta no activa");
-                    } else {
-                        toastMessage.postValue("Error desconocido");
-                    }
-                }
+            public void onSuccess(ResponsePostUserLogin data) {
+                loginresult.postValue(data);
             }
 
             @Override
-            public void onFailure(Call<ResponsePostUserLogin> call, Throwable t) {
-                error.postValue(t.getMessage());
+            public void onError(Throwable t) {
+                toastMessage.postValue(t.getMessage());
             }
         });
     }
