@@ -72,7 +72,7 @@ public class NotificationService extends Service{
                                 }
                                 break;
                             case "lluvia":
-                                if ("1".equals(value)) {
+                                if ("0".equals(value)) {
                                     message = "Esta lloviendo";
                                 }
                                 break;
@@ -97,7 +97,7 @@ public class NotificationService extends Service{
                                 }
                                 break;
                             case "movimiento":
-                                if ("1".equals(value)) {
+                                if ("0".equals(value)) {
                                     message = "Hay movimiento cerca de tu planta!";
                                 }
                                 break;
