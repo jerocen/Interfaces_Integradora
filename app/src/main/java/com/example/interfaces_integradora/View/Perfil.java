@@ -126,7 +126,7 @@ public class Perfil extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(intent);
         } else if (itemId == R.id.nav_logout) {
             Log.d("Mi cuenta", "Token: " + token);
-            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "se cerró sesión con éxito", Toast.LENGTH_SHORT).show();
             peticiones.logoutUser(this, token, () -> {
                 Intent intent = new Intent(this, LogInView.class);
                 startActivity(intent);

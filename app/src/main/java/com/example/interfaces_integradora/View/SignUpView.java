@@ -1,9 +1,5 @@
 package com.example.interfaces_integradora.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +7,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.interfaces_integradora.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.interfaces_integradora.Models.PostUserRegister;
+import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserRegister;
 import com.example.interfaces_integradora.ViewModel.ViewModelSingUp;
 
@@ -32,6 +32,7 @@ public class SignUpView extends AppCompatActivity
         EditText password = findViewById(R.id.editTextContraseniaRegistro);
         EditText passwordConfirm = findViewById(R.id.editTextConfirmarContraseniaRegistro);
         Button btnRegistro = findViewById(R.id.btnRegistro);
+        TextView btnLogin = findViewById(R.id.yatengocuenta);
         TextView errorNombre = findViewById(R.id.errorNombre);
         TextView errorEmail = findViewById(R.id.errorEmail);
         TextView errorPassword = findViewById(R.id.errorPassword);
@@ -59,6 +60,7 @@ public class SignUpView extends AppCompatActivity
             public void onChanged(ResponsePostUserRegister response) {
                 if (response != null) {
                     Toast.makeText(SignUpView.this, response.getMsg(), Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
                     Toast.makeText(SignUpView.this, "Registro denegado", Toast.LENGTH_SHORT).show();
                 }
@@ -80,6 +82,13 @@ public class SignUpView extends AppCompatActivity
                         errorPassword.setText(errors.get("password").get(0));
                     }
                 }
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

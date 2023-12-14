@@ -214,7 +214,7 @@ public class MyPlants extends AppCompatActivity implements NavigationView.OnNavi
             startActivity(intent);
         } else if (itemId == R.id.nav_logout) {
             Log.d("MyPlants", "Token: " + token);
-            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "se cerró sesión con éxito", Toast.LENGTH_SHORT).show();
             Peticiones.logoutUser(this, token, () -> {
                 Intent intent = new Intent(this, LogInView.class);
                 startActivity(intent);
