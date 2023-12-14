@@ -82,7 +82,7 @@ public class NotificationService extends Service{
                                 }
                                 break;
                             case "agua":
-                                if (Integer.parseInt(value) <= 20) {
+                                if (Integer.parseInt(value) <= 50) {
                                     message = "Se esta acabando el agua";
                                 }
                                 break;
