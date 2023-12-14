@@ -73,7 +73,7 @@ public class NotificationService extends Service{
                                 break;
                             case "suelo":
                                 if (Integer.parseInt(value) <= 50) {
-                                    message = "La humedad de la planta es menor a 50%";
+                                    message = "La humedad de la planta es menor a 50%, y se esta regando";
                                 }
                                 break;
                             case "temperatura":
