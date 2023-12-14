@@ -110,7 +110,14 @@ public class DetallePlanta extends AppCompatActivity {
                             ValorAgua.setText(value + "%");
                             break;
                         case "luz":
-                            ValorLuz.setText(value + "%");
+                            int luz = Integer.parseInt(value);
+                            if (luz < 30) {
+                                ValorLuz.setText("Hay demasiada luz");
+                            } else if (luz > 250) {
+                                ValorLuz.setText("Hay poca luz");
+                            } else {
+                                ValorLuz.setText("La luz es moderada");
+                            }
                             break;
                     }
                 }
@@ -123,7 +130,7 @@ public class DetallePlanta extends AppCompatActivity {
             @Override
             public void run() {
                 viewModel.loadPlantData(token);
-                handler.postDelayed(this, 60000);
+                handler.postDelayed(this, 10000);
             }
         };
         handler.post(runnableCode);
@@ -135,7 +142,9 @@ public class DetallePlanta extends AppCompatActivity {
             CountDownTimer s = new CountDownTimer(30000, 1000) {
                 @Override
                 public void onTick(long l) {
+
                     animacion.setVisibility(View.VISIBLE);
+                    fab.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -145,6 +154,7 @@ public class DetallePlanta extends AppCompatActivity {
                         @Override
                         public void onChanged(String s) {
                             Toast.makeText(DetallePlanta.this, s, Toast.LENGTH_SHORT).show();
+                            fab.setVisibility(View.VISIBLE);
                         }
                     });
                 }

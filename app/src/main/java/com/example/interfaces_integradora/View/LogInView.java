@@ -1,9 +1,5 @@
 package com.example.interfaces_integradora.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
 
-import com.example.interfaces_integradora.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.interfaces_integradora.Models.PostUserLogin;
+import com.example.interfaces_integradora.R;
 import com.example.interfaces_integradora.Retrofit.ResponsePostUserLogin;
 import com.example.interfaces_integradora.ViewModel.ViewModelLogin;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -123,6 +123,7 @@ public class LogInView extends AppCompatActivity {
                     // Navegar a la siguiente actividad
                     Intent intent = new Intent(LogInView.this, MyPlants.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     // Mostrar un mensaje de error
                     Toast.makeText(LogInView.this, "Error de inicio de sesión", Toast.LENGTH_SHORT).show();
